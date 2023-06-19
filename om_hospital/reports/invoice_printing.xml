@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- ********* Main Template ********* -->
+    <template id="invoice_printingg">
+
+        <t t-call="web.html_container">
+            
+            <t t-foreach="docs" t-as="o">
+                
+                <t t-call="om_hospital.sub_layout">  <!-- Calling Sub Template -->
+                    
+                </t>
+            </t>
+        </t>
+    </template>
+    
+
+<!-- ********* Sub Template ********* -->
+    <template id="sub_layout">
+        
+        <t t-call="web.external_layout">
+            
+            <div class="page">
+                
+                <!-- header -->
+                <t t-call="om_hospital.header_layout" />   <!-- Calling Sub Template -->
+
+                <!-- Content -->
+                <div class="content">
+                    <t t-call="om_hospital.attrf_layout" />   <!-- Calling Sub Template -->
+                    <t t-call="om_hospital.variable_layout" />   <!-- Calling Sub Template -->
+                    <t t-call="om_hospital.field_layout" />        <!-- Calling Sub Template -->
+                    <t t-call="om_hospital.if_else_layout" />       <!-- Calling Sub Template -->
+                    <t t-call="om_hospital.for_loop_layout" />      <!-- Calling Sub Template -->
+                    <t t-call="om_hospital.some_variables_layout" />        <!-- Calling Sub Template -->
+                </div>
+
+                <!-- footer -->
+                <t t-call="om_hospital.footer_layout" /> 
+                
+            </div>
+        </t>
+    </template>
+    
+    
+    <!-- ********* Header Template ********* -->
+    <template id="header_layout">
+        
+        <div class="header">
+            <div class="text-center" style="border-bottom:1px solid black;">
+                <div class="row">
+                    <div class="col-3 mb4">
+                        <img src="/home/aspire132/Chirag/images" alt="image not found" style="width:100px, height:100px;"/>
+                    </div>
+                    <div class="col-4">
+                        <div class="col-9 text-right">
+                            <span>
+                                asdsa
+                            </span>
+                            <span>
+                                das
+                            </span>
+                            <span>
+                                fd
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </template>
+    
+    
+    <!-- ********* Attrf Template ********* -->
+    <template id="attrf_layout">
+
+        <h2>INVOICE</h2>
+        <a href="https:/www.google.com">Go to Google</a>
+        
+        <!-- ***************  Attrf Tag *************** -->
+        <!-- ****** Applied Dynammic Color With If-Conditon ****** -->
+        <!-- <p t-attf-style="{'background-color':#{o.l10n_in_gst_treatment};"> Without If Conditon -->
+        <p t-attf-style="background-color:{{o.l10n_in_gst_treatment if o.l10n_in_gst_treatment else 'red'}};">  <!-- With IF Condition -->
+            Hellow , This is Dynamic Color   --- 
+        </p>
+
+    </template>
+    
+    
+<!-- ********* Variable Template ********* -->
+    <template id="variable_layout">
+
+        <!--***** Creating Variable *****-->
+        <t t-set="a" t-value="123456789"/>
+
+        <!-- ******* Overriding The Variable "a" ******* -->
+        <t t-set="a" t-value="9"/>
+
+        <!--***** Banavela Variable ne Access karva mate *****-->
+        <div>Aplication Number : <t t-esc="a"/> </div> 
+        <!-- <div> <t t-field="a"/> </div>   Aa Error Aapse !!! Beacause "a" ne aapde Variable set karyo 6 , mate aa "field-Tag" ma Error aapse ... -->
+
+    </template>
+
+    
+<!-- ********* Fields Template ********* -->
+    <template id="field_layout">
+
+        <!--***** Page ni fields ne Access Karva mate *****-->
+        <div> <t t-esc="o.name" /> </div> 
+        <!-- <div> <t t-field="o.name" /> </div>  -->
+        <!-- <div> <t t-out="o.name" /> </div>   Aa Tag V14 thi Uparna mate j lagu padse -->
+        
+        
+    </template>
+    
+    
+    <!-- ********* If-Else Template ********* -->
+    <template id="if_else_layout">
+
+        <!--***** Creating If Condtion *****-->
+        <!-- <t t-if="o.name == 'INV/2023/00001'">
+            <p>Yes! This is <span><t t-esc="o.name"/></span></p>
+        </t>
+        <t t-elif="o.name == 'INV/2023/00002'">
+            <p>Yes! This is <span><t t-esc="o.name"/></span></p>
+        </t>
+        <t t-elif="o.name == 'INV/2023/00003'">
+            <p>Yes! This is <span><t t-esc="o.name"/></span></p>
+        </t>
+        <t t-elif="o.name == 'INV/2023/00004'">
+            <p>Yes! This is <span><t t-esc="o.name"/></span></p>
+        </t>
+        <t t-else="">
+            <p>By Default Value!!!</p>
+        </t> -->
+        
+        <!-- ********* Reducing Code ( If Condition ) *********  -->
+        <p t-if="o.name == 'INV/2023/00001'">Yes! This is <span t-esc="o.name" /></p>
+        <p t-elif="o.name == 'INV/2023/00002'">Yes! This is <span t-esc="o.name" /></p>
+        <p t-elif="o.name == 'INV/2023/00003'">Yes! This is <span t-esc="o.name" /></p>
+        <p t-elif="o.name == 'INV/2023/00004'">Yes! This is <span t-esc="o.name" /></p>
+        <p t-else="">By Default Value!!!</p>
+        
+    </template>
+    
+    
+    <!-- ********* For-Loop Template ********* -->
+    <template id="for_loop_layout">
+        
+        <!-- ***** For Loop *****  -->
+        For Loop : 
+        <t t-foreach="[1,2,3,4,5,6,7,8,9]" t-as="i">
+           <span t-esc = "i" />
+        </t>
+        <br/>
+        
+    </template>
+    
+    
+    <!-- ********* Some-Variables Template ********* -->
+    <template id="some_variables_layout">
+        
+        <!-- ****** Some Variables ****** -->
+        
+        Current Object 
+        <p t-esc = "o" />
+        
+        Current Object
+        <p t-esc = "o_value" />
+        
+        Current Index No.
+        <p t-esc = "o_index" />
+        
+        Is First Index ???
+        <p t-esc = "o_first" />
+        
+        Is Last Index ???
+        <p t-esc = "o_last" />
+        
+        Index No. Even or Odd ???
+        <p t-esc = "o_parity" />
+        
+        Index No. is Even ???
+        <p t-esc = "o_even" />
+        
+        Index No. is Odd ???
+        <p t-esc = "o_odd" />
+        
+    </template>
+    
+    
+<!-- ********* Footer Template ********* -->
+    <!-- <template id="footer_layout">
+
+        <div class="footer">
+            <div class="button confirm" t-on-click="confirm">
+                <t t-esc="props.confirmText" />
+            </div>
+            <div class="button cancel" t-on-click="cancel">
+                <t t-esc="props.cancelText" />
+            </div>
+        </div>
+
+    </template>
+     -->
+    
+    
+
+    
+    <!-- *****************  Costom Report Paper Formate  *****************  -->
+    <!-- <record id="costome_report_paper_formate" model="report.paperformat">
+        <field name="name">Costome_paper_formate</field>
+        <field name="format">A4</field>
+        .
+        .
+        .
+    </record> -->
+    
+    <record id="report_invoice_printing" model="ir.actions.report">
+        <field name="name">Invoice Printing</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">om_hospital.invoice_printingg</field>
+        <field name="report_file">om_hospital.invoice_printingg</field>
+        <field name="print_report_name">'Invoice Printing'</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>  <!--  IMPORTANT LINE  -->
+        <field name="binding_type">report</field>
+        <!-- < name="paperformat_id" ref="om_hospital.costom_report_paper_formate" /> Custom Paper Formate Id ne Inherit Kayriii -->
+    </record>
+</odoo>

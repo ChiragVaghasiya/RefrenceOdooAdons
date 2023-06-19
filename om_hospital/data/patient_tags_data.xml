@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">    <!-- noupdate="1" :-Modal Unistall Karya Pachi pan Aa Data Show Karse !!!  -->
+
+        <record id="patient_tags_vvip" model="patient.tags">
+            <field name="tags">VVIP</field>
+        </record>
+
+        <record id="patient_tags_vvp" model="patient.tags" forcecreate="0">  <!-- forcecreate="0" :- Modal Unistall Karya Pachi Aa Data Show Nai Kare !!! -->
+            <field name="tags">VVP</field>
+        </record>
+        
+    </data>
+</odoo>

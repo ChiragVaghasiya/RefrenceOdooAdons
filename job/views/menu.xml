@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id = "menu_job"
+        name = "Job"
+        web_icon = "job,static/description/icon.png"
+        sequence = "0" />
+    <menuitem
+        id = "menu_generate_job_root"
+        name = "Generate Job" 
+        parent = "menu_job"
+        sequence = "0" />
+
+</odoo>

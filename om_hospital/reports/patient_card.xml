@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_patient1">
+
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="o">    <!-- *** AA For loop 6 *** -->
+
+                <t t-call="web.external_layout">
+                <!-- <t t-call="web.internal_layout"> -->
+
+                    <div class="page">
+
+                        <h2>Patient</h2>
+                        <div> Patient Name : <t t-esc="o.name" />
+                        </div>
+                        <div> Age : <t t-esc="o.age" />
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+
+    <record id="report_patient_card1" model="ir.actions.report">
+        <field name="name">Patient Card</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_hospital.report_patient1</field>
+        <field name="report_file">om_hospital.report_patient1</field>
+        <field name="print_report_name">'Patient Card'</field>
+    </record>
+</odoo>

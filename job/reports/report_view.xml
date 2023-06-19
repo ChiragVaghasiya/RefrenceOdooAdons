@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_report_view_pivot" model="ir.ui.view">
+        <field name="name">report.view.pivot</field>
+        <field name="model">hr.applicant</field>
+        <field name="arch" type="xml">
+            <pivot string="Stages" sample="1">
+
+                <field name="stage_id" type="col"/>
+                <field name="job_id" type="row"/>
+                
+            </pivot>
+        </field>
+   </record>
+
+    <record id="action_report_view" model="ir.actions.act_window">
+        <field name="name">Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.applicant</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_report_view_pivot" />
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id = "menu_report_view"
+        name = "Report View"
+        action ="action_report_view"
+        parent = "hr_recruitment.report_hr_recruitment"
+        sequence = "40" />
+
+</odoo>

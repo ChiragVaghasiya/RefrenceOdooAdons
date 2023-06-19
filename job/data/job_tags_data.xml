@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- <record id="job_tags_python" model="job.tags">
+            <field name="tags">Python</field>
+        </record>
+
+        <record id="job_tags_python_with_odoo" model="job.tags">
+            <field name="tags">Python With Odoo</field>
+        </record>
+
+        <record id="job_tags_js" model="job.tags">
+            <field name="tags">Js</field>
+        </record>
+
+        <record id="job_tags_full_stack_developer" model="job.tags">
+            <field name="tags">Full-stack Developer</field>
+        </record>
+
+        <record id="job_tags_all_rounder" model="job.tags">
+            <field name="tags">All Rounder</field>
+        </record> -->
+
+    </data>
+</odoo>

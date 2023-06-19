@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- *********** FORM VIEW ************ -->
+    <record id="view_generate_job_form" model="ir.ui.view">
+            <field name="name">generate.job.form</field>
+            <field name="model">generate.job</field>
+            <field name="arch" type="xml">
+
+                <form sample="1">
+
+                    <header>
+
+                        <button name="action_submiteed" string="Submiteed" type="object" states="draft" class="oe_highlight"/>
+                        <button name="action_approved" string="Approved" type="object" states="submiteed" class="oe_highlight"/>
+                        <button name="action_refuced" string="Refuced" type="object" states="submiteed" data-hotkey="b" class="oe_highlight"/>
+
+                        <button name="action_send" string="Send Application" type="object" class="oe_highlight"/>
+
+                        <field name="state" widget="statusbar" nolabel='1' statusbar_visible="" />
+
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <label for="name" string="Opning Kick-off" class="oe_edit_only" />
+                                <field name="name" required="1" placeholder="e.g. Odoo Developer"></field>
+                            </h1>
+                        </div>
+                        <group >
+
+                            <group>
+                                    <field  name="skills" widget="many2many_tags" required="1"></field>
+                                    <field  name="min_exp_req"></field>
+                                    <field  name="max_exp_req"></field>
+                                    <field name="priority" widget="priority" />
+                            </group>
+
+                            <group>
+                                    <field  name="open_date"></field>
+                                    <field  name="expected_end_date"></field>
+                                    <field  name="expected_new_employee" required="1"></field>
+                                    <field name="approver" widget="many2one_avatar" required="1"></field>
+                            </group>
+
+                        </group>
+
+                        <group class="oe_title">
+                            <field  name="description" required="1"></field>
+                        </group>
+
+                    </sheet>
+
+                </form>
+            </field>
+    </record>
+
+  <!-- *********** Tree VIEW ************ -->
+    <record id="view_generate_job_tree" model="ir.ui.view" >
+            <field name="name">generate.job.tree</field>
+            <field name="model">generate.job</field>
+            <field name="arch" type="xml">
+
+                <tree sample="1">
+                    <field name="name"></field>
+                </tree>
+            </field>
+    </record>
+
+
+
+    <record id="action_generate_job" model="ir.actions.act_window">
+        <field name="name">Job</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">generate.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>
+                Creat  Your First JOB !!!
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id = "menu_generate_job"
+        name = "Generate Job"
+        action ="action_generate_job"
+        parent = "hr_recruitment.menu_crm_case_categ0_act_job"
+        sequence = "40" />
+
+</odoo>

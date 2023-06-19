@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="report_headerfooter">
+
+        <t t-call="web.html_container">
+
+            <div class="container header" style="border-bottom: 2px solid transparent;border-image: linear-gradient(to right, yellow , orange, #d62365);
+            border-image-slice: 1;
+            width:100%;height:150px;">
+
+                <div class="row d-flex justify-content-end">
+                    <p style="margin-right:40px;width:400px;height:20px;background-image: linear-gradient(to right, orange 22%, #d62365);"></p>
+                </div>        
+
+                <div class="row d-flex justify-content-between">
+                    <div class="col-md-3">
+                        <img src="https://testweb.aspiresoftware.in/_next/static/media/aspire-logo-color.7b236c07.svg" alt="logo" style="width:300px;height:100px;"/>
+                        <!-- <img src="https://testweb.aspiresoftware.in/_next/static/media/aspire-logo-color.7b236c07.svg" alt="logo" style="width:300px;height:100px;"/> -->
+                    </div>
+
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="d-flex align-items-center" style="margin-bottom:10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16" style="color:orange;margin-right:5px;">
+                                    <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                </svg>
+                                <i class="bi bi-telephone-fill"/>
+                                <span> +91-9999999999</span>
+                                </li>
+                            <li class="d-flex align-items-center" style="margin-bottom:10px;">
+                                <svg style="color:orange;margin-right:5px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                                </svg>
+                                <span> aspiresoftserv@1969.com</span>
+                            </li>
+                            <li class="d-flex align-items-center" style="margin-bottom:20px;">
+                                <svg style="color:orange;margin-right:5px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe-asia-australia" viewBox="0 0 16 16">
+                                    <path d="m10.495 6.92 1.278-.619a.483.483 0 0 0 .126-.782c-.252-.244-.682-.139-.932.107-.23.226-.513.373-.816.53l-.102.054c-.338.178-.264.626.1.736a.476.476 0 0 0 .346-.027ZM7.741 9.808V9.78a.413.413 0 1 1 .783.183l-.22.443a.602.602 0 0 1-.12.167l-.193.185a.36.36 0 1 1-.5-.516l.112-.108a.453.453 0 0 0 .138-.326ZM5.672 12.5l.482.233A.386.386 0 1 0 6.32 12h-.416a.702.702 0 0 1-.419-.139l-.277-.206a.302.302 0 1 0-.298.52l.761.325Z"/>
+                                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM1.612 10.867l.756-1.288a1 1 0 0 1 1.545-.225l1.074 1.005a.986.986 0 0 0 1.36-.011l.038-.037a.882.882 0 0 0 .26-.755c-.075-.548.37-1.033.92-1.099.728-.086 1.587-.324 1.728-.957.086-.386-.114-.83-.361-1.2-.207-.312 0-.8.374-.8.123 0 .24-.055.318-.15l.393-.474c.196-.237.491-.368.797-.403.554-.064 1.407-.277 1.583-.973.098-.391-.192-.634-.484-.88-.254-.212-.51-.426-.515-.741a6.998 6.998 0 0 1 3.425 7.692 1.015 1.015 0 0 0-.087-.063l-.316-.204a1 1 0 0 0-.977-.06l-.169.082a1 1 0 0 1-.741.051l-1.021-.329A1 1 0 0 0 11.205 9h-.165a1 1 0 0 0-.945.674l-.172.499a1 1 0 0 1-.404.514l-.802.518a1 1 0 0 0-.458.84v.455a1 1 0 0 0 1 1h.257a1 1 0 0 1 .542.16l.762.49a.998.998 0 0 0 .283.126 7.001 7.001 0 0 1-9.49-3.409Z"/>
+                                </svg>  
+                                <span>  www.testaspiresofware.com</span>
+                            </li>
+                        </ul>
+                    </div>  
+                </div>
+            </div>
+
+            <div class="page">
+                <h2>Main Page</h2>
+            </div>
+
+            <div class="footer">
+                <p class="text-center" style="background-image: linear-gradient(to right, orange 22%, #d62365); width:90%; color:white ; margin:0 auto ; ">402, Aspire SoftServ Pvt Ltd., Vishwa Complex, Navrangpura, Shrimali Society, Ahmedabad, Gujarat.</p>
+            </div>
+        </t>
+    </template>
+
+
+
+
+    <record id="report_header" model="ir.actions.report">
+        <field name="name">Header-Footer</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">om_hospital.report_headerfooter</field>
+        <field name="report_file">om_hospital.report_headerfooter</field>
+        <field name="print_report_name">'Header-Footer'</field>
+    </record>
+</odoo>

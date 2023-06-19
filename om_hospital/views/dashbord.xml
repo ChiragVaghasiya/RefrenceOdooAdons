@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="act_patient_appointment" model="ir.actions.act_window">
+        <field name="name">Patients Appointments</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="om_hospital.graph_view_appointment" />
+    </record>
+
+    <record id="act_book_appointment" model="ir.actions.act_window">
+        <field name="name">Patients Appointments</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="om_hospital.view_hospital_appointment_calendar" />
+    </record>
+
+    <record id="act_patient_list" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+<!-- ==================== FORM VIEW ==================== -->
+    <record id="dashbord_form_view" model="ir.ui.view">
+            <field name="name">dashbord.form.form</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Dashboard">
+                    <board style="1-2">
+                        <column>
+                            <action 
+                                string="Patient Appointment" 
+                                name="%(act_patient_appointment)d"/>
+                            <action 
+                                string="Patient Record" 
+                                name="%(act_patient_list)d"/>
+                        </column>
+                        <column>    
+                            <action 
+                                string="Book Appointment" 
+                                name="%(act_book_appointment)d"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+    </record>
+
+    <record id="action_dashbord" model="ir.actions.act_window">
+        <field name="name">Dashbord</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="dashbord_form_view"/>
+    </record>
+
+
+    <menuitem
+        id = "menu_dashbord_child"
+        name = "Dashbord"
+        parent = "menu_dashbord"
+        action ="action_dashbord"
+        sequence = "0" />
+
+</odoo>

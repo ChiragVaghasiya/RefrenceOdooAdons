@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ****************  Inheriting Template and Overriding the Template **************** -->
+    <template inherit_id='om_hospital.report_patient1' id="inherit_patient_card1">
+        <xpath expr='//div[hasclass("page")]' position="replace">
+            <div class="page">
+                <h1>This Template is Overriding...</h1>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

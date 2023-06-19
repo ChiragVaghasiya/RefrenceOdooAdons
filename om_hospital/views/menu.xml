@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id = "menu_hospital"
+        name = "Hospital"
+        web_icon = "om_hospital,static/description/icon.png"
+        sequence = "0" />
+    
+    <menuitem
+        id = "menu_dashbord"
+        name = "Dashbord"
+        parent = "menu_hospital"
+        sequence = "0" />
+        
+    <menuitem
+        id = "menu_patient_detail"
+        name = "Patient Detail" 
+        parent = "menu_hospital"
+        sequence = "1" />
+    
+    <menuitem 
+        id="menu_appointment_master" 
+        name="Appointment" 
+        parent="menu_hospital"
+        sequence="10" />
+
+    <menuitem
+        id = "menu_configaure"
+        name = "Configaure"
+        parent = "menu_hospital"
+        sequence = "20" />
+
+    <menuitem
+        id = "menu_lab_root"
+        name = "Lab Assistence"
+        parent = "menu_hospital"
+        sequence = "30" />
+
+    <menuitem
+        id = "menu_technical_root"
+        name = "Technical"
+        parent = "menu_hospital"
+        sequence = "40" />
+
+</odoo>

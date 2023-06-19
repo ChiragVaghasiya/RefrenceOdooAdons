@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- *********** FORM VIEW ************ -->
+    <record id="view_patient_tags_form" model="ir.ui.view">
+            <field name="name">patient.tags.form</field>
+            <field name="model">patient.tags</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group >
+                                <group>
+                                  <field  name="tags" string="Tags Name" force_save="1"></field>  <!-- ****** force_save="1":-aa Lakhavathi jo aa field Save Nai thati hoy to Forcelly Save thase.....   -->
+                                  <field  name="sequence" string="Sequence"></field>
+                                </group>
+                                <group >
+                                    <field  name="color" widget="color_picker"></field>
+                                    <field  name="color_2" widget="color"></field>
+                                </group>
+                            </group>
+                    </sheet>
+
+
+                </form>
+            </field>
+    </record>
+
+<!-- *********** Tree VIEW ************ -->
+    <record id="view_patient_tags_tree" model="ir.ui.view">
+            <field name="name">patient.tags.tree</field>
+            <field name="model">patient.tags</field>
+            <field name="arch" type="xml">
+
+                <tree sample="1">
+                    <field  name="tags" string="Tags Name"></field>
+                    <field  name="color" widget="color_picker"></field>
+                </tree>
+            </field>
+    </record>
+    
+
+
+
+
+    <record id="action_patient_tags" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.tags</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>
+                Creat  Your First Tags !!!
+            </p>
+        </field>
+    </record>
+
+    
+    <menuitem
+        id = "menu_patient_tags"
+        name = "Patient Tags"
+        action ="action_patient_tags"
+        parent = "menu_configaure"
+        sequence = "0" />
+</odoo>

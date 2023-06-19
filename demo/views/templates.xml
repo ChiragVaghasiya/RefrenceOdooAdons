@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <data>
+
+
+    <!-- ************************ Dashboard ************************ -->
+    <template id="aspire_dashboard" name="Aspire">
+      <xpath expr="." position="inside">
+        <link rel="stylesheet" type="text/css" href="/demo/static/src/css/my_stylesheet.css"/>
+      </xpath>
+     <script type="text/javascript" src="/demo/static/src/js/my_script.js"/>
+
+      <t t-call="website.layout">
+        <!-- <t t-call="web.html_container"> -->
+          <!-- <t t-call="web.external_layout"> -->
+
+        <div class="container">
+          Hello my Dear Friends !!!!!!!!!!!!
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>
+                  Name :
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="patients" t-as="p">
+                <tr>
+                  <td>
+                    <t t-esc="p.name"/>
+                  </td>
+                </tr>                
+              </t>
+            </tbody>  
+          </table>
+
+          <!-- <a t-attf-href="/web#action=module_name.action_name">Click here to go to another module</a> -->
+
+          <a class="btn btn-primary btn-sm mt8 js_check_product a-submit" t-attf-href="/web#action=om_hospital.action_hospital_patient">Click here</a>
+        </div>
+        <div class="main">
+          <h1>MAIN</h1>
+        </div>
+      </t>
+    </template>
+
+
+
+    <!-- ************************ Hospital FORM ************************ --> 
+    <template id="hospital_patient_form" name="Aspire">
+      <t t-call="website.layout">
+        <div class="wrap">
+          <div class="oe_structure">
+            <div class="container">
+              <form rele="form" action="/hosptal/form" method="POST">
+
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                <div class="form-group">
+                  <label for="name" class="control-label">Name</label>
+                  <input type="text" name="name" t-att-value="name" id="name" placeholder="e.g. John Whel" required="required" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="control-label">Email</label>
+                  <input type="email" name="email" t-att-value="email" id="email" required="required" class="form-control"/>
+                </div>
+
+                <!-- <div class="clearfix oe_login_buttons">
+                  <button class="btn btn-primary pull-left">Create Patient</button>
+                </div> -->
+
+              </form>
+           </div>
+          </div>
+        </div>
+      </t>
+    </template>
+
+<!-- AAAAAA Error Aape 6 ...
+  
+    <record id="patient_thanks" model="website.page">
+      <field name="name">Thanks</field>
+      <field name="type">qweb</field>
+      <field name="url">/patient-thak-you</field>
+      <field name="website_published">True</field>
+      <field name="key">demo.patient_thanks</field>
+      <field name="arch" type="xml">
+        <t name="Thanks" t-name="demo.patient_thanks">
+          <t t-call="website.layout">
+            <div class="wrap">
+              <div class="container">
+                <h1>Thanks</h1>
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="alert alert-success" role="status">
+                      The Patient has been Created Succcesfully
+                    </div>
+                    <p>We we foooooooo</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </field>
+    </record> -->
+
+    
+    <record model="ir.actions.act_url" id="action_google_url">
+      <field name="name">Open Template</field>
+      <!-- <field name="url">http://localhost:8070/demo/demo</field> -->
+      <field name="url">http://localhost:8070/demo/demo</field>
+      <field name="target">new</field>
+    </record>
+
+    <menuitem
+      id = "menu_template"
+      name = "TEMPLATE"
+      action = "action_google_url"
+      sequence = "-50" />
+    
+  </data>
+</odoo>

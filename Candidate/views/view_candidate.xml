@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- ************** PIVOT VIEWS ************* -->
+    <record id="view_candidate_detail_pivot" model="ir.ui.view">
+        <field name="name">candidate.detail.pivot</field>
+        <field name="model">recruitment.candidate</field>
+        <field name="arch" type="xml">
+            <pivot string="Stages" sample="1">
+                
+                <field name="email" type="col"/>
+                <field name="name" type="row"/>
+                <!-- <field name="price_subtotal" type="measure"/> -->
+                
+            </pivot>
+        </field>
+    </record>
+    
+    <!-- ************** TREE VIEWS ************* -->
+        <record id="view_candidate_detail_tree" model="ir.ui.view">
+            <field name="name">candidate.detail.tree</field>
+            <field name="model">recruitment.candidate</field>
+            <field name="arch" type="xml">
+                <tree sample="1">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="mobile"/>
+                    <field name="degree"/>
+                    <field name="applied_job" optional="hide"/>
+                    <field name="current_company" optional="hide"/>
+                    <field name="current_city" optional="hide"/>
+                    <field name="skills" widget="many2many_tags" options="{'color_field': 'color'}" optional="show"/>
+                    <field name="current_salary" optional="hide"/>
+                    <field name="expected_salary"/>
+                    <field name="referred_by" optional="hide"/>
+                    <field name="experience_in_months" optional="hide"/>
+                    <field name="current_experience"/>
+                </tree>
+            </field>
+        </record>
+
+    <record id="view_candidate_detail_form" model="ir.ui.view">
+        <field name="name">candidate.detail.form</field>
+        <field name="model">recruitment.candidate</field>
+        <field name="arch" type="xml">
+            <form sample="1">
+                <sheet>
+                    <div class="h1 w-75">
+                        <field name="name" placeholder="Candidate Name"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="email" widget="email">Email</field>
+                            <field name="mobile" widget="phone">Mobile</field>
+                            <field name="degree">degree</field>
+                            <field name="applied_job">Applied Job</field>
+                            <field name="current_company">Current Company</field>
+                            <field name="current_city">Current City</field>
+                        </group>
+                        <group>
+                            <field name="skills" widget="many2many_tags">Skills</field>
+                            <field name="current_salary">Current Salary</field>
+                            <field name="expected_salary">Expected Salary</field>
+                            <field name="referred_by">Referred By</field>
+                            <field name="experience_in_months">Experience in Months</field>
+                            <field name="current_experience">Current Experience</field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_candidate_detail" model="ir.actions.act_window">
+        <field name="name">Candidate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">recruitment.candidate</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Candidate!
+            </p>
+        </field>
+
+    </record>
+
+    <menuitem id="menu_candidate_details"
+              name="Candidate Details"
+              parent="hr_recruitment.menu_crm_case_categ0_act_job"
+              action="action_candidate_detail"
+              sequence="0"/>
+
+</odoo>

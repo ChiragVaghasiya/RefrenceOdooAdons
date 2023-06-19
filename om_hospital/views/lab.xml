@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- *********** FORM VIEW ************ -->
+    <record id="view_patient_tags_form" model="ir.ui.view">
+            <field name="name">lab.assistence.form</field>
+            <field name="model">lab.assistence</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group >
+                                <group>
+                                  <field  name="name" string="Lab Tag" ></field>
+                                  <field  name="refrence_record" string="Record"></field>
+                                </group>
+                                <group >
+                                    <field  name="user_id" string="Doctor"></field>
+                                </group>
+                            </group>
+                    </sheet>
+
+
+                </form>
+            </field>
+    </record>
+
+<!-- *********** Tree VIEW ************ -->
+    <record id="view_patient_tags_tree" model="ir.ui.view">
+            <field name="name">lab.assistence.tree</field>
+            <field name="model">lab.assistence</field>
+            <field name="arch" type="xml">
+
+                <tree sample="1">
+                    <field  name="sequence" string="Sequence" widget="handle"></field>
+                    <!-- ********** widget="handle":- Anathi Drop-Down kari Sakie , Ane aane specific aa Fields ma etla mate mukayu beacause aa widget khali "INTEGER" mate j aaplied thay 6 ... ************** -->
+                    <field  name="name" string="Lab Tag"></field>
+                    <field  name="user_id" string="Doctor"></field>
+                    <field  name="refrence_record" string="Record"></field>
+                </tree>
+            </field>
+    </record>
+    
+
+
+
+
+    <record id="action_lab" model="ir.actions.act_window">
+        <field name="name">Lab</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">lab.assistence</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>
+                Creat  Your First Lab assistence !!!
+            </p>
+        </field>
+    </record>
+
+    
+    <menuitem
+        id = "menu_lab"
+        name = "Lab Manue"
+        action ="action_lab"
+        parent = "menu_lab_root"
+        sequence = "0" />
+</odoo>

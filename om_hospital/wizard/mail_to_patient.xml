@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- *********** FORM VIEW ************ -->
+    <record id="view_mail_to_patient" model="ir.ui.view">
+        <field name="name">mail.to.patient.form</field>
+        <field name="model">mail.to.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field  name="selected_fields_ids" widget="many2many_tags" ></field>
+                </group>
+                <footer>
+                    <button string="Send A Mail" class="btn btn-primary" type="object" name="send_a_mail"
+                        data-hotkey="q"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Email template -->
+    <record id="view2_mail_to_patient" model="mail.template">
+        <field name="name">Mail To Patient</field>
+        <field name="model_id" ref="om_hospital.model_hospital_patient" />
+        <field name="subject">Mail To Patient</field>
+        <field name="email_from">odoo1320@gmail.com</field>
+        <field name="email_to">{{object.email}}</field>
+        <field name="body_html" type="html">
+            <div
+                style="font-family: Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; max-width: 600px; font-size: 14px; margin: 0 auto; ;padding: 0px; box-sizing: border-box;border:1px solid #ddd;">
+                <!-- HEADER -->
+                <table class="head-wrap"
+                    style="border-bottom: 1px solid #ddd; width: 100%; padding: 5px; background: #d6e4e7; border-collapse: collapse; border-spacing: 0;">
+                    <tbody>
+                        <tr>
+                            <td class="header" style="padding: 5px;">
+                                <div class="container"
+                                    style="display: block!important; max-width: 600px!important; margin: 0 auto!important; clear: both!important;">
+                                    <div class="content">
+                                        <img style="display: table-cell; vertical-align: inherit;"
+                                            src="https://testweb.aspiresoftware.in/_next/static/media/aspire-logo-color.7b236c07.svg" alt="image not found"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- /HEADER -->
+
+                <!-- BODY -->
+                <table class="body-wrap" style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                    <tbody>
+                        <tr>
+                            <td bgcolor="#FFFFFF">
+                                <div class="container"
+                                    style="display: block!important; max-width: 600px!important; margin: 0 auto!important; clear: both!important;">
+                                    <div class="content"
+                                        style="padding: 10px; max-width: 600px; margin: 0 auto; display: block;">
+                                        <table width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p
+                                                            style="font-weight: 500; font-size: 27px; margin-bottom: 15px;">
+                                                            Hello, <span t-field="object.name" /></p>
+
+                                                        <!-- <p>
+                                                            Age : <span t-field="object.age"/>
+                                                        </p>
+                                                        <p>
+                                                            Gender : <span t-field="object.gender"/>
+                                                        </p>
+                                                        <p>
+                                                            Email : <span t-field="object.email"/>
+                                                        </p>
+                                                        <p> 
+                                                            Date of Birth : <span t-field="object.date_of_birth"/>
+                                                        </p>
+                                                        <p>
+                                                            Refrence : <span t-field="object.ref"/>
+                                                        </p> -->
+
+                                                         <t t-foreach="ctx.get('var1')" t-as="rct">
+                                                            <p><t t-esc="rct"/></p>
+                                                         </t>
+
+                                                        <p
+                                                            style="margin: 0px; font-weight: normal; font-size: 14px; line-height: 1.6;">
+                                                            Cell: +91-635-308-6224 | Desk: +91-79-2640-9959
+                                                        </p>
+                                                        <br/>
+                                                        <p><img
+                                                            src="https://testweb.aspiresoftware.in/_next/static/media/aspire-logo-color.7b236c07.svg" />
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </field>
+    </record>
+
+
+
+
+    <record id="action_mail_to_patient" model="ir.actions.act_window">
+        <field name="name">Mail To Patient</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mail.to.patient</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
