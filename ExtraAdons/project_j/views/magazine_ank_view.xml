@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+
+        <record id="magazine_ank_form_view" model="ir.ui.view">
+            <field name="name">magazine.ank.form</field>
+            <field name="model">magazine.ank</field>
+            <field name="arch" type="xml">
+                <form string="Magazine Ank">
+                    <header>
+                        <button string="Recieved" type="object" name="magazine_ank_recieved"
+                                groups="project_j.project_j_admin" class="oe_highlight oe_read_only"
+                                attrs="{'invisible': [('state','in',('in_review','completed','recieved'))]}"/>
+                        <button string="In Review" type="object" name="magazine_ank_in_review"
+                                class="oe_highlight oe_read_only" groups="project_j.project_j_admin"
+                                attrs="{'invisible': [('state', 'in', ('due','in_review','completed'))]}"/>
+                        <button string="Completed" type="object" name="magazine_ank_completed"
+                                groups="project_j.project_j_admin" class="oe_highlight oe_read_only"
+                                attrs="{'invisible': [('state','in',('due','recieved','completed'))]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ank_name"/>
+                                <field name="publication_date"/>
+                                <field name="magazine_id"/>
+                            </group>
+                            <group>
+                                <field name="ank_number"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="magazine_ank_tree_view" model="ir.ui.view">
+            <field name="name">magazine.ank.tree</field>
+            <field name="model">magazine.ank</field>
+            <field name="arch" type="xml">
+                <tree string="Magazine Ank">
+                    <field name="ank_name"/>
+                    <field name="ank_number"/>
+                    <field name="magazine_id"/>
+                    <field name="publication_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="magazine_ank_search_view" model="ir.ui.view">
+            <field name="name">magazine.ank.search</field>
+            <field name="model">magazine.ank</field>
+            <field name="arch" type="xml">
+                <search string="Magazine Ank">
+                    <field name="magazine_id"/>
+                    <filter name="group_magazine_id" string="Group By Magazine" icon="fa-folder-open"
+                            context="{'group_by':'magazine_id'}"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="magazine_ank_action_window" model="ir.actions.act_window">
+            <field name="name">Magazine Ank</field>
+            <field name="res_model">magazine.ank</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_group_magazine_id': 1}</field>
+        </record>
+    </data>
+</odoo>

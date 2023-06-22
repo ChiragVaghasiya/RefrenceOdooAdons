@@ -1,0 +1,224 @@
+<odoo>
+    <data>
+
+        <menuitem id="main_menu_head"
+                  name="J"/>
+
+        <menuitem id="samuday_menu_item"
+                  name="Samuday"
+                  action="samuday_action_window"
+                  parent="main_menu_head"
+                  groups="project_j.project_j_admin,project_j.project_j_approver"
+                  sequence="1"/>
+
+        <menuitem id="mahatma_menu_item"
+                  name="Mahatma"
+                  action="mahatma_action_window"
+                  parent="main_menu_head"
+                  groups="project_j.project_j_admin,project_j.project_j_approver"
+                  sequence="2"/>
+
+        <menuitem id="magazine_main_menu_item"
+                  name="Magazine"
+                  parent="main_menu_head"
+                  sequence="3"/>
+
+        <menuitem id="magazine_sub_menu_item"
+                  name="Magazine"
+                  action="magazine_action_window"
+                  parent="magazine_main_menu_item"
+                  groups="project_j.project_j_admin,project_j.project_j_approver,project_j.project_j_magazine_reviewer"
+                  sequence="1"/>
+
+        <menuitem id="magazine_ank_sub_menu_item"
+                  name="Magazine Ank"
+                  action="magazine_ank_action_window"
+                  parent="magazine_main_menu_item"
+                  sequence="2"/>
+
+
+        <menuitem id="tharav_menu_item"
+                  name="Tharav"
+                  action="tharav_action_window"
+                  parent="main_menu_head"
+                  groups="project_j.project_j_admin,project_j.project_j_approver"
+                  sequence="4"/>
+
+        <!-- ================================ DOCUMENTS ================================ -->
+
+        <menuitem id="documents_menu_item"
+                  name="Documents"
+                  action="samuday_action_window"
+                  parent="main_menu_head"
+                  sequence="5"/>
+
+        <menuitem id="lekh_menu_item"
+                  name="Lekh"
+                  action="lekh_action_window"
+                  parent="documents_menu_item"
+                  groups="project_j.project_j_admin,project_j.project_j_approver,project_j.project_j_magazine_reviewer,project_j.project_j_data_entry"
+                  sequence="1"/>
+
+        <menuitem id="nirnaamii_lekh_menu_item"
+                  name="Nirnaami Lekh"
+                  action="nirnaami_lekh_action_window"
+                  parent="documents_menu_item"
+                  groups="project_j.project_j_admin,project_j.project_j_approver,project_j.project_j_magazine_reviewer,project_j.project_j_data_entry"
+                  sequence="2"/>
+
+        <menuitem id="book_menu_item"
+                  name="Book"
+                  action="book_action_window"
+                  parent="documents_menu_item"
+                  groups="project_j.project_j_admin,project_j.project_j_approver,project_j.project_j_magazine_reviewer,project_j.project_j_data_entry"
+                  sequence="3"/>
+
+        <menuitem id="videos_menu_item"
+                  name="Video"
+                  action="videos_action_window"
+                  parent="documents_menu_item"
+                  groups="project_j.project_j_admin,project_j.project_j_approver,project_j.project_j_magazine_reviewer,project_j.project_j_data_entry"
+                  sequence="4"/>
+
+
+        <menuitem id="advance_search_menu_item"
+                  name="Advance Search"
+                  action="advance_search_action_window"
+                  parent="documents_menu_item"
+                  sequence="5"/>
+
+        <menuitem id="search_results_menu_item"
+                  name="Search Results"
+                  action="advance_search_results_model_action_window"
+                  parent="documents_menu_item"
+                  sequence="6"/>
+
+        <!-- ////////////////////////// -->
+
+        <menuitem id="samiti_menu_item"
+                  name="Samiti"
+                  action="samiti_action_window"
+                  parent="main_menu_head"
+                  groups="project_j.project_j_admin"
+                  sequence="6"/>
+
+        <menuitem id="users_menu_item"
+                  name="Users"
+                  action="users_action_window"
+                  parent="main_menu_head"
+                  groups="project_j.project_j_admin"
+                  sequence="7"/>
+
+        <!-- ================================ Master ================================ -->
+
+        <menuitem id="master_menu_item"
+                  name="Master"
+                  parent="main_menu_head"
+                  sequence="8"/>
+
+        <menuitem id="paksh_menu_item"
+                  name="Paksh"
+                  action="paksh_action_window"
+                  parent="master_menu_item"
+                  sequence="1"/>
+
+        <menuitem id="magazine_type_menu_item"
+                  name="Magazine Type"
+                  action="magazine_type_action_window"
+                  parent="master_menu_item"
+                  sequence="3"/>
+
+        <menuitem id="Sanstha_menu_item"
+                  name="Sanstha"
+                  action="sanstha_action_window"
+                  parent="master_menu_item"
+                  sequence="4"/>
+
+        <menuitem id="person_menu_item"
+                  name="Person"
+                  action="person_action_window"
+                  parent="master_menu_item"
+                  sequence="5"/>
+
+
+
+
+        <!-- ////////////////////////// -->
+
+
+        <menuitem id="search_documents_menu_item"
+                  name="Search Documents"
+                  action="documents_action_window"
+                  parent="main_menu_head"
+                  sequence="9"/>
+
+        <menuitem id="scheduler_menu_items"
+                  name="Schedular"
+                  action="project_j_scheduler_action_window"
+                  parent="main_menu_head"
+                  sequence="10"/>
+
+        <!-- ================================ CONFIG ================================ -->
+
+        <menuitem id="config_menu_item"
+                  name="Configure"
+                  parent="main_menu_head"
+                  sequence="11"/>
+
+        <menuitem id="lekh_tags_menu_item"
+                  name="Tags"
+                  action="lekh_tags_action_window"
+                  parent="config_menu_item"
+                  sequence="3"/>
+
+        <menuitem id="language_menu_item"
+                  name="language"
+                  action="language_action_window"
+                  parent="config_menu_item"
+                  sequence="4"/>
+
+        <menuitem id="ank_menu_item"
+                  name="Ank"
+                  action="ank_action_window"
+                  parent="config_menu_item"
+                  sequence="5"/>
+
+        <menuitem id="lekh_reference_menu_item"
+                  name="Lekh Reference"
+                  action="lekh_reference_action_window"
+                  parent="config_menu_item"
+                  sequence="6"/>
+
+        <menuitem id="users_role_menu_item"
+                  name="User's Role"
+                  action="users_role_action_window"
+                  parent="config_menu_item"
+                  sequence="8"/>
+
+        <!-- <menuitem id="mahatma_samiti_menu_item"
+            name="Mahatma Samiti"
+            action="mahatma_samiti_action_window"
+            parent="config_menu_item"
+            sequence="9"/> -->
+
+
+        <menuitem id="advance_search_options_menu_item"
+                  name="Advance Search Options"
+                  action="advance_search_options_action_window"
+                  parent="config_menu_item"
+                  sequence="10"/>
+
+        <menuitem id="subject_master_menu_item"
+                  name="Subject"
+                  action="subject_master_action_window"
+                  parent="master_menu_item"
+                  sequence="6"/>
+                            
+        <menuitem id="doc_ref_menu_item"
+                  name="Documents Ref Type"
+                  action="documents_reference_type_action_window"
+                  parent="config_menu_item"
+                  sequence="7"/>
+
+    </data>
+</odoo>

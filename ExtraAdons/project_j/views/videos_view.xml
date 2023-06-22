@@ -1,0 +1,279 @@
+<odoo>
+    <data>
+
+        <record id="video_form_view" model="ir.ui.view">
+            <field name="name">video.model.form</field>
+            <field name="model">video.model</field>
+            <field name="arch" type="xml">
+                <form string="Video">
+                    <header>
+                        <button string="Accept" type="object" name="accept_video" class="oe_read_only"
+                                attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                        <button string="Reject" type="object" name="reject_video" style="{background-color:red;}"
+                                class="oe_read_only" attrs="{'invisible': [('state','=','rejected')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <!-- <button string="Check Duplicate" type="object" name="check_duplicate_records" class="oe_highlight" style="padding:0px; float:right; height:40px; width:110px; text-align: center;"/> -->
+                        <button string="Download Documents" type="object" name="get_stock_file" class="oe_highlight"
+                                style="padding:0px; float:right; height:40px; width:110px; text-align: center;"/>
+
+                        <notebook>
+                            <page string="General Info">
+                                <group col="3">
+
+                                    <group>
+                                        <field name="current_id" attrs="{'invisible':1}"/>
+                                        <field name="rec_state" attrs="{'invisible':1}"/>
+                                        <field name="video_self_id2" attrs="{'invisible':1}"/>
+                                        <field name="video_sr_no"
+                                               attrs="{'readonly':[('rec_state','=','created')], 'invisible':[('rec_state','=','created')]}"/>
+                                        <field name="video_display_sr_no" force_save="1"
+                                               attrs="{'invisible':[('rec_state','=','draft')]}"/>
+                                        <field name="date_of_publishing"/>
+                                        <field name="vikram_samvat_of_publishing"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="subject"/>
+                                        <field name="date_of_occurance"/>
+                                        <field name="vikram_samvat_of_occurance"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="tags_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="tharav_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <!-- <field name="status"/> -->
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+
+                            <page string="Related Info">
+
+                                <group>
+                                    <group>
+                                        <field name="mahatma_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="person_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="samiti_id" widget="many2many_tags"
+                                               options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                        <field name="samuday_id" widget="many2many_tags"
+                                               options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                    </group>
+                                    <group>
+                                        <field name="paksh_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="source"/>
+                                        <field name="sanstha_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <field name="remark"/>
+                                    <field name="person_copy" attrs="{'invisible':1}"/>
+                                    <field name="sanstha_copy" attrs="{'invisible':1}"/>
+                                    <field name="mahatma_copy" attrs="{'invisible':1}"/>
+                                    <field name="paksh_copy" attrs="{'invisible':1}"/>
+                                </group>
+
+                                <!-- <group>
+                                    <h5>Video Related Info.</h5>
+                                    <br></br>
+                                    <field name="video_global_related_info" nolabel="1">
+                                        <form>
+                                            <sheet>
+                                                <group col="3">
+                                                    <field name="test_bool" context="{'default_test_bool':True}"/>
+                                                    <group>
+                                                        <field name="category"/>
+                                                        <field name="vikram_samvant_of_publishing"/>
+                                                        <field name="date_of_publishing"/>
+                                                        <field name="date_of_occurance"/>
+                                                    </group>
+                                                    <group>
+                                                        <field name="person_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                        <field name="mahatma_id"  widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                        <field name="paksh_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                                    </group>
+                                                    <group>
+                                                        <field name="sanstha_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                        <field name="samiti_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}" />
+                                                        <field name="samuday_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                    </group>
+                                                </group>
+                                            </sheet>
+                                        </form>
+
+                                        <tree>
+                                            <field name="category"/>
+                                            <field name="date_of_publishing"/>
+                                            <field name="date_of_occurance"/>
+                                        </tree>
+                                    </field>
+                                </group> -->
+
+                            </page>
+
+                            <page string="Other Info">
+
+                                <group>
+
+                                    <group>
+                                        <field name="category"/>
+                                        <field name="city"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="local_place"/>
+                                        <field name="language_id"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+                                    <field name="link_with_field" widget="many2many_tags"
+                                           options="{'color_field': 'color'}"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Documents">
+
+                                <group>
+                                    <field name="documents"/>
+                                </group>
+
+                                <group>
+
+                                    <group>
+                                        <field name="star_rating" widget="priority"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="is_document_available" widget="radio"/>
+                                    </group>
+
+                                </group>
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="video_tree_view" model="ir.ui.view">
+            <field name="name">video.model.tree</field>
+            <field name="model">video.model</field>
+            <field name="arch" type="xml">
+                <tree string="Video">
+                    <field name="video_display_sr_no"/>
+                    <field name="subject"/>
+                    <field name="person_copy"/>
+                    <field name="sanstha_copy"/>
+                    <field name="mahatma_copy"/>
+                    <field name="paksh_copy"/>
+                    <field name="date_of_publishing"/>
+                    <field name="remark"/>
+                    <field name="state" invisible="1"/>
+                    <button name="accept_video" string="Accept" type="object" icon="fa-check"
+                            attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                    <button name="reject_video" string="Reject" type="object" icon="fa-ban"
+                            attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="video_graph_view" model="ir.ui.view">
+            <field name="name">video.model.graph</field>
+            <field name="model">video.model</field>
+            <field name="arch" type="xml">
+                <graph string="Videos Analysis" type="pie">
+                    <field name="category" type="row"/>
+                    <field name="state" type="row"/>
+                    <!-- <field name="state" type="measure"/>
+                    <field name="language_id" type="measure"/>
+                    <field name="category" type="measure"/>
+                    <field name="tharav_id" type="measure"/> -->
+                </graph>
+            </field>
+        </record>
+
+        <!-- Video Search View-->
+        <record id="view_video_filter" model="ir.ui.view">
+            <field name="name">video.model.search</field>
+            <field name="model">video.model</field>
+            <field name="arch" type="xml">
+                <search string="Search Video">
+                    <field name="subject" string="Subject"/>
+                    <field name="vikram_samvat_of_publishing" string="Vikram Samvat Of Publishing"/>
+                    <field name="vikram_samvat_of_occurance" string="Vikram Samvat Of Occurance"/>
+                    <field name="source" string="Source"/>
+                    <field name="city" string="City"/>
+                    <field name="local_place" string="Local Place"/>
+                    <field name="person_copy" string="Person"/>
+                    <field name="sanstha_copy" string="Sanstha"/>
+                    <field name="mahatma_copy" string="Mahatma"/>
+                    <field name="viddeo_ref_field" string="Ref. Id."/>
+                    <field name="doc_ref" string="Doc. Id."/>
+                    <field name="paksh_copy" string="Paksh"/>
+                    <filter name="pending" string="Pending" domain="[('state','=','pending')]"/>
+                    <filter name="rejected" string="Rejected" domain="[('state','=','rejected')]"/>
+                    <filter name="accepted" string="Accepted" domain="[('state','=','accepted')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="star_rating" string="Start Rating" context="{'group_by':'star_rating'}"/>
+                        <filter name="language_id" string="Language" context="{'group_by':'language_id'}"/>
+                        <filter name="category" string="Category" context="{'group_by':'category'}"/>
+                        <filter name="date_of_occurance" string="Date of Occurance" context="{'group_by':'category'}"/>
+                        <filter name="date_of_publishing" string="Date of Release" context="{'group_by':'category'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="videos_action_window" model="ir.actions.act_window">
+            <field name="name">Video</field>
+            <field name="res_model">video.model</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="search_view_id" ref="view_video_filter"/>
+        </record>
+
+
+        <act_window id="multiple_record_update_state_video"
+                    name="Update State"
+                    res_model="update.state"
+                    binding_model="video.model"
+                    view_mode="form"
+                    target="new"
+                    binding_views="list"/>
+
+        <!-- <act_window id="video_attachments_download" 
+            name="Download Attachments" 
+            res_model="update.state" 
+            binding_model="video.model"
+            view_mode="form" 
+            target="new" 
+            binding_views="list"/> -->
+
+        <record id="video_attachments_download" model="ir.actions.server">
+            <field name="name">Download Attachments</field>
+            <field name="model_id" ref="project_j.model_video_model"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = records.get_stock_file()
+            </field>
+        </record>
+
+    </data>
+</odoo>

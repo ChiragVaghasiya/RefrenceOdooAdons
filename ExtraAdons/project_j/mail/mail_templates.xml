@@ -1,0 +1,294 @@
+<odoo>
+    <!-- >>>>>>>>>>>>>>>>>>>> Magazine Ank Is Created <<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_ank_created_mail_template" model="mail.template">
+        <field name="name">Magazine Ank Created Mail Template</field>
+        <field name="model_id" ref="model_magazine_ank"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Magazine Ank ${object.ank_name} Created</field>
+        <field name="body_html" type="html">
+            <body>
+                <h4>Magazine ank ${object.ank_name} is created.</h4>
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>> Magazine Ank Is Due <<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_ank_is_due_mail_template" model="mail.template">
+        <field name="name">Magazine Ank Is Due Mail Template</field>
+        <field name="model_id" ref="model_magazine_ank"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Magazine Ank ${object.ank_name} Is Due</field>
+        <field name="body_html" type="html">
+            <body>
+                <h3>Magazine ank ${object.ank_name} is 'due'.</h3>
+                <h2>State: Due</h2>
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>> Magazine Ank Recieved <<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_ank_recieved_mail_template" model="mail.template">
+        <field name="name">Magazine Ank Recieved Mail Template</field>
+        <field name="model_id" ref="model_magazine_ank"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">>Magazine Ank ${object.ank_name} Recieved</field>
+        <field name="body_html" type="html">
+            <body>
+                <h4>Magazine Ank ${object.ank_name} is 'Recieved'.</h4>
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>> Magazine Ank Recieve Is Due <<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_ank_recieve_is_due_mail_template" model="mail.template">
+        <field name="name">Magazine Ank Recieve Is Due Mail Template</field>
+        <field name="model_id" ref="model_magazine_ank"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Magazine Ank ${object.ank_name} Recieve Is Due</field>
+        <field name="body_html" type="html">
+            <body>
+                <h3>Magazine ank ${object.ank_name} 'recieve' is due.</h3>
+                <h2>State: Revieved</h2>
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>> Magazine Ank In-Review <<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_ank_in_review_mail_template" model="mail.template">
+        <field name="name">Magazine Ank InReview Mail Template</field>
+        <field name="model_id" ref="model_magazine_ank"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Magazine Ank ${object.ank_name} InReview</field>
+        <field name="body_html" type="html">
+            <body>
+                <h4>Magazine Ank '${object.ank_name}' is 'In Review'.</h4>
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>> Magazine Ank Is Due <<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_ank_review_is_due_mail_template" model="mail.template">
+        <field name="name">Magazine Ank Review Is Due Mail Template</field>
+        <field name="model_id" ref="model_magazine_ank"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Magazine Ank Review ${object.ank_name} Is Due</field>
+        <field name="body_html" type="html">
+            <body>
+                <h3>Magazine ank ${object.ank_name} 'Review' is due.</h3>
+                <h2>State: In Review</h2>
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>> Magazine Ank Completed <<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_ank_completed_mail_template" model="mail.template">
+        <field name="name">Magazine Ank Completed Mail Template</field>
+        <field name="model_id" ref="model_magazine_ank"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Magazine Ank ${object.ank_name} Completed</field>
+        <field name="body_html" type="html">
+            <body>
+                <h4>Magazine Ank ${object.ank_name} Completed.</h4>
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>> Magazine Ank Waiting For Review <<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_ank_waiting_for_review_mail_template" model="mail.template">
+        <field name="name">Magazine Ank Waiting For Review Mail Template</field>
+        <field name="model_id" ref="model_mail_related_model"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Magazine Ank Waiting For Review</field>
+        <field name="body_html" type="html">
+            <head>
+                <style type="text/css">
+                    tr,th, td {
+                    border: 1px solid #000;
+                    height: 20px;
+                    }
+                </style>
+            </head>
+
+            <body>
+                <h2 style=" color:black;">These are all Magazine Ank waiting to be Reviewed.</h2>
+
+                <table style="border-collapse: collapse; border: 1px solid #000;">
+                    <thead>
+                        <tr>
+                            <th style="width: 70%; text-align: center; color:black; font-size:17px; font-style:bold; height: 40px; background: #b2dffb;">
+                                Magazine Ank
+                            </th>
+                            <th style="width: 30%; text-align: center; color:black; font-size:17px; font-style:bold; height: 40px; background: #b2dffb;">
+                                Recieved Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        %for row in object.magazine_ank_ids:
+                        <tr>
+                            <td style="width: 70%; text-align: left; color:black; font-size:15px;">${row.ank_name}</td>
+                            <td style="width: 30%; text-align: left; color:black; font-size:15px;">
+                                ${row.recieved_date_tracker[0][0].date_field}
+                            </td>
+                        </tr>
+                        %endfor
+                    </tbody>
+                </table>
+
+
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>>>>>>> Paksh Update <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="paksh_update_mail_template" model="mail.template">
+        <field name="name">Paksh Update</field>
+        <field name="model_id" ref="model_paksh_model"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Paksh "${object.paksh_name}" Update</field>
+        <field name="body_html" type="html">
+
+            <body>
+                <h2>Paksh " ${object.paksh_name} " has been updated with details as mentioned below.</h2>
+
+                <h2 style="color:#707070">Time of Update:</h2>
+                <p>${object.today_date}</p>
+
+                <br></br>
+                %for data, value in ctx['updates'].items():
+                <h3 style="display:inline">${data} :</h3>
+                <h4 style="color:#383838; display:inline;">${value}</h4>
+                <br></br>
+
+                %endfor
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>> Magazine Type Update <<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="magazine_type_update_template" model="mail.template">
+        <field name="name">Magazine Type Update</field>
+        <field name="model_id" ref="model_magazine_type"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Magazine Type "${object.magazine_name}" Update</field>
+        <field name="body_html" type="html">
+
+            <body>
+                <h2>Magazine Type " ${object.magazine_name} " has been updated with details as mentioned below.</h2>
+
+                <!-- <p>${ctx['updates']['Magazine State']}</p>
+                <h1>1</h1>
+                <p>${ctx}</p> -->
+
+                <h2 style="color:#707070">Time of Update:</h2>
+                <p>${object.today_date}</p>
+
+                <br></br>
+                %for data, value in ctx['updates'].items():
+                <h3 style="display:inline">${data} :</h3>
+                <h4 style="color:#383838; display:inline;">${value}</h4>
+                <br></br>
+
+                %endfor
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>>>>>>> Sanstha Update <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="sanstha_update_mail_template" model="mail.template">
+        <field name="name">Sanstha Update</field>
+        <field name="model_id" ref="model_sanstha_model"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Sanstha "${object.sanstha_name}" Update</field>
+        <field name="body_html" type="html">
+
+            <body>
+                <h2>Sanstha " ${object.sanstha_name} " has been updated with details as mentioned below.</h2>
+
+                <h2 style="color:#707070">Time of Update:</h2>
+                <p>${object.today_date}</p>
+
+                <br></br>
+                %for data, value in ctx['updates'].items():
+                <h3 style="display:inline">${data} :</h3>
+                <h4 style="color:#383838; display:inline;">${value}</h4>
+                <br></br>
+
+                %endfor
+            </body>
+
+        </field>
+    </record>
+
+
+    <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>> Person Update <<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+    <record id="person_update_mail_template" model="mail.template">
+        <field name="name">Person Update</field>
+        <field name="model_id" ref="model_person_model"/>
+        <field name="email_from">${object.fix_email}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="subject">Person "${object.person_name}" Update</field>
+        <field name="body_html" type="html">
+
+            <body>
+                <h2>Person " ${object.person_name} " has been updated with details as mentioned below.</h2>
+
+                <h2 style="color:#707070">Time of Update:</h2>
+                <p>${object.today_date}</p>
+
+                <br></br>
+                %for data, value in ctx['updates'].items():
+                <h3 style="display:inline">${data} :</h3>
+                <h4 style="color:#383838; display:inline;">${value}</h4>
+                <br></br>
+
+                %endfor
+            </body>
+
+        </field>
+    </record>
+
+</odoo>

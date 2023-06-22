@@ -1,0 +1,250 @@
+<odoo>
+    <data>
+
+        <record id="book_form_view" model="ir.ui.view">
+            <field name="name">book.model.form</field>
+            <field name="model">book.model</field>
+            <field name="arch" type="xml">
+                <form string="Book">
+                    <header>
+                        <button string="Accept" type="object" name="accept_book"
+                                attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                        <!--The oe_highlight class gives the button a red color when it is saved.
+                        It is usually used to indicate the expected behaviour. -->
+                        <button string="Reject" type="object" name="reject_book" class="oe_highlight"
+                                attrs="{'invisible': [('state','=','rejected')]}"/>
+                        <!--This will create the statusbar, thanks to the widget. -->
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                         <button string="Check Duplicate" type="object" name="check_duplicate_records" class="oe_highlight" style="padding:0px; float:right; height:40px; width:110px; text-align: center;"/>
+
+                        <notebook>
+                            <page string="General Info">
+                                <group col="3">
+
+                                    <group>
+                                        <field name="current_id" attrs="{'invisible':1}"/>
+                                        <field name="rec_state" attrs="{'invisible':1}"/>
+                                        <field name="book_self_id2" attrs="{'invisible':1}"/>
+                                        <field name="book_sr_no"
+                                               attrs="{'readonly':[('rec_state','=','created')], 'invisible':[('rec_state','=','created')]}"/>
+                                        <field name="book_display_sr_no" force_save="1"
+                                               attrs="{'invisible':[('rec_state','=','draft')]}"/>
+                                        <field name="book_name"/>
+                                        <field name="date_of_publishing"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="subject"/>
+                                        <field name="publisher"/>
+                                        <field name="tharav_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="tags_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="vikram_samvat_of_publishing"/>
+                                        <!-- <field name="status"/> -->
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+
+                            <page string="Related Info">
+
+                                <group>
+                                    <group>
+                                        <field name="person_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="mahatma_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="paksh_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+                                    <group>
+                                        <field name="sanstha_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="samiti_id" widget="many2many_tags"
+                                               options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                        <field name="samuday_id" widget="many2many_tags"
+                                               options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="remark"/>
+                                    <field name="person_copy" attrs="{'invisible':1}"/>
+                                    <field name="sanstha_copy" attrs="{'invisible':1}"/>
+                                    <field name="mahatma_copy" attrs="{'invisible':1}"/>
+                                    <field name="paksh_copy" attrs="{'invisible':1}"/>
+                                </group>
+
+                                <group>
+                                    <h5>Book Related Info.</h5>
+                                    <br></br>
+                                    <field name="book_global_related_info" nolabel="1">
+                                        <form>
+                                            <sheet>
+                                                <group col="3">
+                                                    <group>
+                                                        <field name="category"/>
+                                                        <field name="vikram_samvant_of_publishing"/>
+                                                        <field name="date_of_publishing"/>
+                                                    </group>
+                                                    <group>
+                                                        <field name="person_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                        <field name="mahatma_id"  widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                        <field name="paksh_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                                    </group>
+                                                    <group>
+                                                        <field name="sanstha_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                        <field name="samiti_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}" />
+                                                        <field name="samuday_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+
+                                                    </group>
+                                                </group>
+                                            </sheet>
+                                        </form>
+
+                                        <tree>
+                                            <field name="category"/>
+                                            <field name="date_of_publishing"/>
+                                            <field name="vikram_samvant_of_publishing"/>
+                                        </tree>
+                                    </field>
+                                </group>
+
+                            </page>
+
+                            <page string="Other Info">
+
+                                <group>
+
+                                    <group>
+                                        <field name="category"/>
+                                        <field name="total_page"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="edition"/>
+                                        <field name="state" invisible="1"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+                                    <field name="link_with_field" widget="many2many_tags"
+                                           options="{'color_field': 'color'}"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Documents">
+
+                                <group>
+                                    <field name="documents"/>
+                                </group>
+
+                                <group>
+
+                                    <group>
+                                        <field name="star_rating" widget="priority"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="is_document_available" widget="radio"/>
+                                    </group>
+
+                                </group>
+
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="book_tree_view" model="ir.ui.view">
+            <field name="name">book.model.tree</field>
+            <field name="model">book.model</field>
+            <field name="arch" type="xml">
+                <tree string="Book">
+                    <field name="book_display_sr_no"/>
+                    <field name="subject"/>
+                    <field name="book_name"/>
+                    <field name="publisher"/>
+                    <field name="person_copy"/>
+                    <field name="sanstha_copy"/>
+                    <field name="mahatma_copy"/>
+                    <field name="paksh_copy"/>
+                    <field name="date_of_publishing"/>
+                    <field name="remark"/>
+                    <field name="state" invisible="1"/>
+                    <button name="accept_book" string="Accept" type="object" icon="fa-check"
+                            attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                    <button name="reject_book" string="Reject" type="object" icon="fa-ban"
+                            attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="book_graph_view" model="ir.ui.view">
+            <field name="name">book.model.graph</field>
+            <field name="model">book.model</field>
+            <field name="arch" type="xml">
+                <graph string="Book Analysis" type="pie">
+                    <!-- <field name="category" type="row"/> -->
+                    <field name="state" type="row"/>
+                    <!-- <field name="state" type="measure"/>
+                    <field name="language_id" type="measure"/>
+                    <field name="category" type="measure"/>
+                    <field name="tharav_id" type="measure"/> -->
+                </graph>
+            </field>
+        </record>
+
+        <!-- Book Search View-->
+        <record id="view_book_filter" model="ir.ui.view">
+            <field name="name">book.model.search</field>
+            <field name="model">book.model</field>
+            <field name="arch" type="xml">
+                <search string="Search Book">
+                    <field name="book_name" string="Book Name"/>
+                    <field name="subject" string="Subject"/>
+                    <field name="publisher" string="Publisher"/>
+                    <field name="edition" string="Edition"/>
+                    <field name="total_page" string="Total Page"/>
+                    <filter name="pending" string="Pending" domain="[('state','=','pending')]"/>
+                    <filter name="rejected" string="Rejected" domain="[('state','=','rejected')]"/>
+                    <filter name="accepted" string="Accepted" domain="[('state','=','accepted')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="status" string="Status" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="book_action_window" model="ir.actions.act_window">
+            <field name="name">Book</field>
+            <field name="res_model">book.model</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="search_view_id" ref="view_book_filter"/>
+        </record>
+
+
+        <act_window id="multiple_record_update_state_book"
+                    name="Update State"
+                    res_model="update.state"
+                    binding_model="book.model"
+                    view_mode="form"
+                    target="new"
+                    binding_views="list"/>
+
+    </data>
+</odoo>

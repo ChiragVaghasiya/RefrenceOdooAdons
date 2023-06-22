@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record model="mail.channel" id="project_j_record_record_reviewer_authority">
+            <field name="name">Project - J</field>
+            <field name="group_ids" eval="[(4, ref('project_j.project_j_admin'))]"/>
+            <field name="description">Records Update Notifications.</field>
+        </record>
+    </data>
+</odoo>

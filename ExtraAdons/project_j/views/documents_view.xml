@@ -1,0 +1,208 @@
+<odoo>
+    <data>
+
+        <record id="documents_form_view" model="ir.ui.view">
+            <field name="name">documents.model.form</field>
+            <field name="model">documents.model</field>
+            <field name="arch" type="xml">
+                <form string="Documents">
+                    <sheet>
+                        <group>
+                            <h1 style="color:#581845;">
+                                <field name="doc_type"/>
+                            </h1>
+                        </group>
+                        <group col="3">
+                            <group>
+                                <field name="subject"/>
+                                <field name="sr_no" attrs="{'invisible':[('doc_type','!=', 'lekh')]}"/>
+                                <field name="sr_no_prefix" attrs="{'invisible':[('doc_type','=', 'lekh')]}"/>
+                            </group>
+                            <group>
+                                <field name="tags_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                <field name="star_rating" widget="priority"/>
+                            </group>
+                            <group>
+                                <field name="tharav_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="description"/>
+                            </group>
+                            <group>
+                                <field name="remark"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="doc_related_info_lines"/>
+                                <field name="doc_global_related_info">
+                                    <form>
+                                        <sheet>
+                                            <group col="3">
+                                                <group>
+                                                    <field name="reference_type"/>
+                                                    <field name="date_of_publishing"/>
+                                                    <field name="category"/>
+                                                    <field name="mahatma_id" widget="many2many_tags"
+                                                           options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                </group>
+                                                <group>
+                                                    <field name="date_of_occurance"/>
+                                                    <field name="vikram_samvant_of_publishing"/>
+                                                    <field name="person_id" widget="many2many_tags"
+                                                           options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                </group>
+                                                <group>
+                                                    <field name="sanstha_id" widget="many2many_tags"
+                                                           options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                    <field name="samuday_id" widget="many2many_tags"
+                                                           options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                    <field name="samiti_id" widget="many2many_tags"
+                                                           options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                        <group attrs="{'invisible':[('doc_type','!=', 'lekh')]}">
+                            <h3 style="color:#7769FC;">Lekh</h3>
+                            <br></br>
+                            <field name="lekh_ids" attrs="{'invisible':[('doc_type','!=', 'lekh')]}" nolabel="1"/>
+                        </group>
+
+                        <group attrs="{'invisible':[('doc_type','!=', 'nirnaami_lekh')]}">
+                            <h3 style="color:#7769FC;">Nirnaami Lekh</h3>
+                            <br></br>
+                            <field name="nirnaami_lekh_ids" attrs="{'invisible':[('doc_type','!=', 'nirnaami_lekh')]}"
+                                   nolabel="1"/>
+                        </group>
+
+                        <group attrs="{'invisible':[('doc_type','!=', 'book')]}">
+                            <h3 style="color:#7769FC;">Book</h3>
+                            <br></br>
+                            <field name="book_ids" attrs="{'invisible':[('doc_type','!=', 'book')]}" nolabel="1"/>
+                        </group>
+
+                        <group attrs="{'invisible':[('doc_type','!=', 'video')]}">
+                            <h3 style="color:#7769FC;">Video</h3>
+                            <br></br>
+                            <field name="video_ids" attrs="{'invisible':[('doc_type','!=', 'video')]}" nolabel="1"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="documents_tree_view" model="ir.ui.view">
+            <field name="name">documents.model.tree</field>
+            <field name="model">documents.model</field>
+            <field name="arch" type="xml">
+                <tree string="Documents">
+                    <field name="doc_type"/>
+                    <field name="sr_no"/>
+                    <field name="subject"/>
+                    <field name="description"/>
+                    <field name="tags_copy"/>
+                    <field name="tharav_copy"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="documents_search_view" model="ir.ui.view">
+            <field name="name">documents.model.search</field>
+            <field name="model">documents.model</field>
+            <field name="arch" type="xml">
+                <search string="Documents Lekhs">
+                    <field name="doc_related_info_lines"
+                           filter_domain="[('doc_related_info_lines.date_of_occurance', 'ilike', self)]"
+                           string="Date Of Occurance"/>
+                    <field name="doc_related_info_lines"
+                           filter_domain="[('doc_related_info_lines.date_of_publishing', 'ilike', self)]"
+                           string="Date Of Publishing"/>
+                    <field name="doc_related_info_lines"
+                           filter_domain="[('doc_related_info_lines.vikram_samvat', 'ilike', self)]"
+                           string="Vikram Samvant Of Publishing"/>
+                    <field name="doc_related_info_lines"
+                           filter_domain="[('doc_related_info_lines.category', 'ilike', self)]" string="Catagory"/>
+                    <filter name="doc_related_info_lines" domain="[('doc_related_info_lines.category', 'ilike', self)]"
+                            string="Catagory"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="documents_graph_view" model="ir.ui.view">
+            <field name="name">documents.model.graph</field>
+            <field name="model">documents.model</field>
+            <field name="groups_id" eval="[(4, ref('project_j.project_j_admin'))]"/>
+            <field name="arch" type="xml">
+                <graph string="Documents" type="pie">
+                </graph>
+            </field>
+        </record>
+
+        <record id="documents_action_window" model="ir.actions.act_window">
+            <field name="name">Documents</field>
+            <field name="res_model">documents.model</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+
+        <record id="documents_related_info_form_view" model="ir.ui.view">
+            <field name="name">documents.related.info.form</field>
+            <field name="model">documents.related.info</field>
+            <field name="arch" type="xml">
+                <form string="Documents Related Info">
+                    <sheet>
+                        <group col="3">
+                            <group>
+                                <field name="reference_type"/>
+                                <field name="date_of_publishing"/>
+                                <field name="category"/>
+                                <field name="mahatma_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                            </group>
+                            <group>
+                                <field name="date_of_occurance"/>
+                                <field name="vikram_samvat"/>
+                                <field name="person_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                            </group>
+                            <group>
+                                <field name="sanstha_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                <field name="samuday_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                <field name="samiti_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="documents_related_info_tree_view" model="ir.ui.view">
+            <field name="name">documents.related.info.tree</field>
+            <field name="model">documents.related.info</field>
+            <field name="arch" type="xml">
+                <tree string="Documents Related Info">
+                    <field name="date_of_publishing"/>
+                    <field name="category"/>
+                    <field name="date_of_occurance"/>
+                    <field name="vikram_samvat"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

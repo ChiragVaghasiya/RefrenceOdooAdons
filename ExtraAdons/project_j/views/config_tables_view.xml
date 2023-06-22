@@ -1,0 +1,275 @@
+<odoo>
+    <data>
+
+        <!-- ===============================  TAGS  ============================== -->
+
+        <record id="lekh_tags_form_view" model="ir.ui.view">
+            <field name="name">lekh.tags.model.form</field>
+            <field name="model">lekh.tags.model</field>
+            <field name="arch" type="xml">
+                <form string="Tags">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="lekh_tag_name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lekh_tags_tree_view" model="ir.ui.view">
+            <field name="name">lekh.tags.model.tree</field>
+            <field name="model">lekh.tags.model</field>
+            <field name="arch" type="xml">
+                <tree string="Tags">
+                    <field name="lekh_tag_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="tags_graph_view" model="ir.ui.view">
+            <field name="name">lekh.tags.model.graph</field>
+            <field name="model">lekh.tags.model</field>
+            <field name="arch" type="xml">
+                <graph string="Tags Analysis" type="pie">
+                </graph>
+            </field>
+        </record>
+
+        <record id="lekh_tags_action_window" model="ir.actions.act_window">
+            <field name="name">Lekh Tags</field>
+            <field name="res_model">lekh.tags.model</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+
+        <!-- =============================  Language  ================================ -->
+
+        <record id="language_form_view" model="ir.ui.view">
+            <field name="name">language.model.form</field>
+            <field name="model">language.model</field>
+            <field name="arch" type="xml">
+                <form string="Language">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="language_name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="language_tree_view" model="ir.ui.view">
+            <field name="name">language.model.tree</field>
+            <field name="model">language.model</field>
+            <field name="arch" type="xml">
+                <tree string="Language">
+                    <field name="language_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="language_action_window" model="ir.actions.act_window">
+            <field name="name">language</field>
+            <field name="res_model">language.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- =============================  Ank  ================================ -->
+
+        <record id="ank_form_view" model="ir.ui.view">
+            <field name="name">ank.model.form</field>
+            <field name="model">ank.model</field>
+            <field name="arch" type="xml">
+                <form string="Ank">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ank_name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ank_tree_view" model="ir.ui.view">
+            <field name="name">ank.model.tree</field>
+            <field name="model">ank.model</field>
+            <field name="arch" type="xml">
+                <tree string="Ank">
+                    <field name="ank_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ank_action_window" model="ir.actions.act_window">
+            <field name="name">ank</field>
+            <field name="res_model">ank.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- =============================  Lekh Reference  ================================ -->
+
+        <record id="lekh_reference_form_view" model="ir.ui.view">
+            <field name="name">lekh.reference.model.form</field>
+            <field name="model">lekh.reference.model</field>
+            <field name="arch" type="xml">
+                <form string="Lekh Reference">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="reference_name"/>
+                            </group>
+                            <group>
+                                <field name="type_of_reference"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lekh_reference_tree_view" model="ir.ui.view">
+            <field name="name">lekh.reference.model.tree</field>
+            <field name="model">lekh.reference.model</field>
+            <field name="arch" type="xml">
+                <tree string="Lekh Reference">
+                    <field name="reference_name"/>
+                    <field name="type_of_reference"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="lekh_reference_action_window" model="ir.actions.act_window">
+            <field name="name">Lekh Reference</field>
+            <field name="res_model">lekh.reference.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- =============================  Advance Search Options  ================================ -->
+
+        <record id="advance_search_options_form_view" model="ir.ui.view">
+            <field name="name">advance.search.options.form</field>
+            <field name="model">advance.search.options</field>
+            <field name="arch" type="xml">
+                <form string="Advance Search Options">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="advance_search_options_tree_view" model="ir.ui.view">
+            <field name="name">advance.search.options.tree</field>
+            <field name="model">advance.search.options</field>
+            <field name="arch" type="xml">
+                <tree string="Advance Search Options">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="advance_search_options_action_window" model="ir.actions.act_window">
+            <field name="name">Advance Search Options</field>
+            <field name="res_model">advance.search.options</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- =============================  Document Types  ================================ -->
+
+        <record id="document_types_form_view" model="ir.ui.view">
+            <field name="name">document.types.form</field>
+            <field name="model">document.types</field>
+            <field name="arch" type="xml">
+                <form string="Document Types">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="document_types_tree_view" model="ir.ui.view">
+            <field name="name">document.types.tree</field>
+            <field name="model">document.types</field>
+            <field name="arch" type="xml">
+                <tree string="Document Types">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="document_types_action_window" model="ir.actions.act_window">
+            <field name="name">Document Types</field>
+            <field name="res_model">document.types</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- =============================  User's Role  ================================ -->
+
+        <record id="users_role_form_view" model="ir.ui.view">
+            <field name="name">users.role.form</field>
+            <field name="model">users.role</field>
+            <field name="arch" type="xml">
+                <form string="User's Role">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="role_name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="users_role_tree_view" model="ir.ui.view">
+            <field name="name">users.role.tree</field>
+            <field name="model">users.role</field>
+            <field name="arch" type="xml">
+                <tree string="User's Role">
+                    <field name="role_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="users_role_action_window" model="ir.actions.act_window">
+            <field name="name">User's Role</field>
+            <field name="res_model">users.role</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+
+        <record id="projrct_j_management" model="ir.module.category">
+            <field name="name">Project J</field>
+            <field name="description">User access for Project-J Module</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="project_j_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="projrct_j_management"/>
+        </record>
+
+        <record id="project_j_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="projrct_j_management"/>
+        </record>
+
+        <record id="project_j_approver" model="res.groups">
+            <field name="name">Approver/Master</field>
+            <field name="category_id" ref="projrct_j_management"/>
+        </record>
+
+        <record id="project_j_data_entry" model="res.groups">
+            <field name="name">Data Entry</field>
+            <field name="category_id" ref="projrct_j_management"/>
+        </record>
+
+        <record id="project_j_document_reviewer" model="res.groups">
+            <field name="name">Document Reviewer</field>
+            <field name="category_id" ref="projrct_j_management"/>
+        </record>
+
+        <record id="project_j_magazine_reviewer" model="res.groups">
+            <field name="name">Magazine Reviewer</field>
+            <field name="category_id" ref="projrct_j_management"/>
+        </record>
+
+        <record id="project_j_reviewer" model="res.groups">
+            <field name="name">Reviewer</field>
+            <field name="category_id" ref="projrct_j_management"/>
+        </record>
+
+    </data>
+</odoo>

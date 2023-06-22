@@ -1,0 +1,353 @@
+<odoo>
+    <data>
+
+        <record id="mahatma_form_view" model="ir.ui.view">
+            <field name="name">mahatma.model.form</field>
+            <field name="model">mahatma.model</field>
+            <field name="groups_id" eval="[(4, ref('project_j.project_j_admin'))]"/>
+            <field name="arch" type="xml">
+                <form string="Mahatma">
+                    <header>
+
+                    </header>
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field nolabel="1" name="duplicate_msg"
+                                       attrs="{'invisible':[('duplicate_flag','=',False)]}"/>
+                            </group>
+                            <button attrs="{'invisible':[('duplicate_flag','=',False)]}" string="Check Duplicate"
+                                    type="object" name="check_duplicate_records" class="oe_highlight"
+                                    style="padding:0px; height:40px; width:110px; text-align: center;"/>
+                        </group>
+
+                        <group>
+                            <group>
+                                <widget name="web_ribbon" text="Complete"
+                                        attrs="{'invisible':[('complete_record','=',False)]}"/>
+                                <widget name="web_ribbon" text="Incomplete" bg_color="bg-danger"
+                                        attrs="{'invisible':[('complete_record','=',True)]}"/>
+                                <h1>
+                                    <field name="image" widget="image" nolabel="1"/>
+                                </h1>
+                                <h1>
+                                    <field name="mahatma_name" string="Name" nolabel="1"/>
+                                </h1>
+                                <field name="complete_record" attrs="{'invisible':1}"/>
+                                <field name="other_name"/>
+                            </group>
+
+                        </group>
+
+                        <notebook>
+                            <page string="General Info">
+                                <group col="3">
+
+                                    <group>
+                                        <field name="duplicate_flag" attrs="{'invisible':1}"/>
+                                        <field name="rec_state" attrs="{'invisible':1}"/>
+                                        <field name="current_id" attrs="{'invisible':1}"/>
+                                        <field name="designation_id"
+                                               attrs="{'invisible':[('sadhu_gender','=','સાધ્વી')]}"/>
+                                        <field name="designation_id2"
+                                               attrs="{'invisible':[('sadhu_gender','=','સાધુ')]}"/>
+                                        <field name="gachhadhipati"/>
+                                        <field name="gachhnayika" attrs="{'invisible':[('sadhu_gender','=','સાધ્વી')]}"/>
+                                        <!--<field name="is_mahatma_gachhadhipati"/> -->
+                                        <field name="acharya_pad_date"
+                                               attrs="{'invisible':[('designation_id','!=','acharya')]}"/>
+                                        <field name="samuday_id"/>
+                                        <field name="paksh_id"/>
+                                        <field name="transfer" attrs="{'invisible':[('rec_state','=','draft')]}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="guru_id" domain="[('id','!=', current_id)]"
+                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="designation_start_date"/>
+                                        <field name="diksha_divas"/>
+
+                                    </group>
+
+                                    <group>
+                                        <field name="sadhu_gender" widget="radio" nolabel="1"/>
+                                        <field name="mahatma_presence" widget="radio"/>
+                                        <field name="kaaldharm_date"
+                                               attrs="{'invisible':[('mahatma_presence','in',('yes','not_sure'))], 'required':[('mahatma_presence','=','no')]}"/>
+                                    </group>
+                                </group>
+
+
+                                <group>
+                                    <group>
+                                        <field name="samuday_history_id"
+                                               attrs="{'invisible':[('transfer','=',False)]}"/>
+                                    </group>
+
+                                    <group>
+                                    </group>
+                                </group>
+
+                                <group>
+
+                                    <group>
+                                        <field name="associated_person" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="associated_sanstha" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="associated_magazine" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+                                    <field name="remark_field"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Social Info">
+
+                                <group>
+                                    <field name="social_media"/>
+                                </group>
+
+                                <group>
+                                    <field name="social_info_lines" attrs="{'readonly':[('social_media','=',False)]}"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Samiti">
+
+                                <group>
+                                    <h1>Samiti</h1>
+                                    <br></br>
+                                    <field name="samiti_id" nolabel="1"
+                                           attrs="{'invisible':[('rec_state','=','draft')]}"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Samuday" class="oe_read_only">
+
+                                <group>
+                                    <h1>Samudays</h1>
+                                    <br></br>
+                                    <field name="samuday_rec" nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Magazines" class="oe_read_only">
+
+                                <group>
+                                    <h1>Magazines</h1>
+                                    <br></br>
+                                    <field name="magazine_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Documents" class="oe_read_only">
+
+                                <group>
+                                    <h1>Lekh</h1>
+                                    <br></br>
+                                    <field name="lekh_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Nirnaami Lekh</h1>
+                                    <br></br>
+                                    <field name="nirnaami_lekh_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Book</h1>
+                                    <br></br>
+                                    <field name="book_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Video</h1>
+                                    <br></br>
+                                    <field name="views_id" attrs="{'invisible':1}"/>
+                                    <field name="video_rec" nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Tags" class="oe_read_only">
+
+                                <group>
+                                    <h1>Tags</h1>
+                                    <br></br>
+                                    <field name="tags_rec" widget="many2many_tags" options="{'color_field': 'color'}"
+                                           nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="mahatma_tree_view" model="ir.ui.view">
+            <field name="name">mahatma.model.tree</field>
+            <field name="model">mahatma.model</field>
+            <field name="arch" type="xml">
+                <tree string="Mahatma" decoration-danger="complete_record == False"
+                      decoration-success="complete_record == True">
+                    <field name="complete_record" invisible="1"/>
+                    <field name="complete_mahatma_name"/>
+                    <field name="paksh_id"/>
+                    <field name="samuday_id"/>
+                    <field name="guru_id"/>
+                    <field name="designation_copy"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mahatma_graph_view" model="ir.ui.view">
+            <field name="name">mahatma.model.graph</field>
+            <field name="model">mahatma.model</field>
+            <field name="groups_id" eval="[(4, ref('project_j.project_j_admin'))]"/>
+            <field name="arch" type="xml">
+                <graph string="Mahatma Analysis" type="pie">
+                    <!-- <field name="mahatma_presence"/> -->
+                    <!-- <field name="designation_id"/> -->
+                </graph>
+            </field>
+        </record>
+
+        <record id="mahatma_sesarch_view" model="ir.ui.view">
+            <field name="name">mahatma.model.search</field>
+            <field name="model">mahatma.model</field>
+            <field name="arch" type="xml">
+                <search string="Mahatma Search">
+                    <field name="complete_record"/>
+                    <filter string="Complete Record" name="complete_record" domain="[('complete_record','=',True)]"/>
+                    <filter string="Incomplete Record" name="incomplete_record"
+                            domain="[('complete_record','=',False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="mahatma_action_window" model="ir.actions.act_window">
+            <field name="name">Mahatma</field>
+            <field name="res_model">mahatma.model</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+
+        <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>> Mahatma Samiti <<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+        <record id="mahatma_samiti_form_view" model="ir.ui.view">
+            <field name="name">mahatma.samiti.form</field>
+            <field name="model">mahatma.samiti</field>
+            <field name="arch" type="xml">
+                <form string="Mahatma Samiti">
+                    <sheet>
+                        <group>
+                            <h6 style="color:#A9A9A9">Samiti Name</h6>
+                            <br></br>
+                            <h1>
+                                <field name="samiti_id"/>
+                            </h1>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="start_date_vikram_samvant"/>
+                            </group>
+                            <group>
+                                <field name="end_date"/>
+                                <field name="end_date_vikram_samvant"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mahatma_samiti_tree_view" model="ir.ui.view">
+            <field name="name">mahatma.samiti.tree</field>
+            <field name="model">mahatma.samiti</field>
+            <field name="arch" type="xml">
+                <tree string="Mahatma Samiti">
+                    <field name="samiti_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mahatma_samiti_action_window" model="ir.actions.act_window">
+            <field name="name">Mahatma Samiti</field>
+            <field name="res_model">mahatma.samiti</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>> Mahatma Samuday History <<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+        <record id="mahatma_samuday_history_form_view" model="ir.ui.view">
+            <field name="name">mahatma.samuday.history.form</field>
+            <field name="model">mahatma.samuday.history</field>
+            <field name="arch" type="xml">
+                <form string="Mahatma Samuday History">
+                    <sheet>
+                        <group>
+                            <h6 style="color:#A9A9A9">Samuday Name</h6>
+                            <br></br>
+                            <h1>
+                                <field name="samuday_id"/>
+                            </h1>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                            </group>
+                            <group>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mahatma_samuday_history_tree_view" model="ir.ui.view">
+            <field name="name">mahatma.samuday.history.tree</field>
+            <field name="model">mahatma.samuday.history</field>
+            <field name="arch" type="xml">
+                <tree string="Mahatma Samuday History">
+                    <field name="samuday_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mahatma_samuday_history_action_window" model="ir.actions.act_window">
+            <field name="name">Mahatma Samuday History</field>
+            <field name="res_model">mahatma.samuday.history</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

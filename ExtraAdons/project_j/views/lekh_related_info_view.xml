@@ -1,0 +1,165 @@
+<odoo>
+    <data>
+
+
+        <record id="lekh_related_info_form_view" model="ir.ui.view">
+            <field name="name">lekh.related.info.model.form</field>
+            <field name="model">lekh.related.info.model</field>
+            <field name="arch" type="xml">
+                <form string="Lekh Related Info">
+                    <style>
+                        .openerp .my_image > img {
+                        height: 90px;
+                        width: 90px;
+                        }
+                    </style>
+                    <sheet>
+
+                        <group>
+                            <field name="news_heading"/>
+                        </group>
+
+                        <group col="3">
+                            <group>
+                                <field name="reference_type"/>
+                                <field name="samvat_of_occurance"/>
+                                <field name="date_of_publishing" attrs="{'required':[('reference_type','=','news_paper')]}"/>
+                                <field name="occasion_location"/>
+                                <field name="ank"
+                                       attrs="{'invisible':[('reference_type','!=','magazine')], 'required':[('reference_type','=','magazine')]}"/>
+                            </group>
+
+                            <group>
+                                <field name="other_reference_type"
+                                       attrs="{'invisible':[('reference_type','!=','others')]}"/>
+                                <field name="reference"
+                                       attrs="{'invisible':[('reference_type','=','magazine')], 'required':[('reference_type','!=','magazine')]}"/>
+                                <field name="magazine_reference"
+                                       attrs="{'invisible':[('reference_type','!=','magazine')], 'required':[('reference_type','=','magazine')]}"/>
+                                <field name="date_of_occurance"/>
+                                <field name="person_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                <field name="library_field"
+                                       attrs="{'invisible':[('reference_type','not in',('magazine','book'))], 'required':[('reference_type','in',('magazine','book'))]}"/>
+                                <field name="samiti_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                <field name="paksh_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            </group>
+
+                            <group>
+                                <field name="vikram_samvant_of_publishing"/>
+                                <field name="category"/>
+                                <field name="page" attrs="{'required':[('reference_type','in',('news_paper','book'))]}"/>
+                                <field name="sanstha_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                <field name="samuday_id" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                <field name="reference_location"
+                                       attrs="{'invisible':[('reference_type','!=','news_paper')]}"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <!-- <field name="lekh_image" widget="many2many_binary"/> -->
+                            <field name="lekh_image" widget="many2many_kanban">
+                                <kanban quick_create="false" create="true" delete="true">
+                                    <field name="name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click" style="position: relative">
+                                                <div style="margin: 0px; padding: 0px;">
+                                                    <a t-if="! read_only_mode" type="delete"
+                                                       style="position: absolute; padding: 4px; diplay: inline-block">X
+                                                    </a>
+                                                </div>
+                                                <div class="oe_module_vignette" style="margin-top: 20px;">
+                                                    <field name="datas" widget="image" class="oe_avatar"/>
+                                                </div>
+                                                <div>
+                                                    <field name="name"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </group>
+
+                        <group>
+                            <field name="reference_image" widget="many2many_kanban">
+                                <kanban quick_create="false" create="true" delete="true">
+                                    <field name="name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click" style="position: relative">
+                                                <div style="margin: 0px; padding: 0px;">
+                                                    <a t-if="! read_only_mode" type="delete"
+                                                       style="position: absolute; padding: 4px; diplay: inline-block">X
+                                                    </a>
+                                                </div>
+                                                <div class="oe_module_vignette" style="margin-top: 20px;">
+                                                    <field name="datas" widget="image" class="oe_avatar"/>
+                                                </div>
+                                                <div>
+                                                    <field name="name"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </group>
+
+                        <group>
+                            <field name="mahatma_id" widget="many2many_tags"
+                                   options="{'no_open': True, 'color_field': 'color'}"/>
+                        </group>
+
+                    </sheet>
+                    <div class="o_attachment_preview"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="lekh-related_info_tree_view" model="ir.ui.view">
+            <field name="name">lekh.related.info.model.tree</field>
+            <field name="model">lekh.related.info.model</field>
+            <field name="arch" type="xml">
+                <tree string="Lekh Related Info">
+                    <field name="news_heading"/>
+                    <field name="category"/>
+                    <field name="reference_type"/>
+                    <field name="date_of_publishing"/>
+                    <field name="date_of_occurance"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="lekh_related_info_action_window" model="ir.actions.act_window">
+            <field name="name">Lekh Related Info</field>
+            <field name="res_model">lekh.related.info.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- <record id="person_and_sanstha_form_view" model="ir.ui.view">
+            <field name="name">person.and.sanstha.form</field>
+            <field name="model">person.and.sanstha</field>
+            <field name="arch" type="xml">
+                <form string="Person And Sanstha">
+                    <sheet>
+                        <field name=""/>
+                        <field name=""/>
+                    </sheet>
+                </form>
+            <field>
+        </record>
+
+        <record id="lekh_related_info_action_window" model="ir.actions.act_window">
+            <field name="name">Lekh Related Info</field>
+            <field name="res_model">lekh.related.info.model</field>
+            <field name="view_mode">tree,form</field>
+        </record> -->
+
+    </data>
+</odoo> 

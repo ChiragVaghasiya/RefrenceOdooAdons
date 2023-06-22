@@ -1,0 +1,511 @@
+<odoo>
+    <data>
+                
+        <record id="advance_search_form_view" model="ir.ui.view">
+            <field name="name">advance.search.form</field>
+            <field name="model">advance.search</field>
+            <field name="arch" type="xml">
+                <form string="Documents Advance Search">
+                    <sheet>
+
+                        <group col="3">
+
+                            <group>
+                                    
+                                <group>
+                                    <field name="all_doc" widget="boolean_toggle"/>
+                                </group>
+
+                                <group>
+                                    <field name="book" widget="boolean_toggle"/>
+                                </group>
+
+                            </group>
+
+                            <group>
+                                
+                                <group>
+                                    <field name="lekh" widget="boolean_toggle"/>
+                                </group>
+
+                                <group>
+                                    <field name="video" widget="boolean_toggle"/>
+                                </group>
+
+                            </group>
+
+                            <group>
+                                <group>
+                                    <field name="nirnaami_lekh" widget="boolean_toggle"/>
+                                </group>
+                            </group>
+
+                        </group>
+
+                        <group col="4"  style="border-top:1px solid #A9A9A9;"  attrs="{'invisible':[('advance_search','=',True)]}">
+                            
+                            <br></br>
+                            <h5 style="margin-left:2px;">Global Search</h5>
+                            <br></br>
+                            <group  attrs="{'invisible':[('advance_search','=',True)]}">
+                                <h3><field name="global_search" nolabel="1"/></h3>
+                            </group>
+                            
+                            <group attrs="{'invisible':[('advance_search','=',True)]}">
+                                <button style="border-radius: 50%; margin-left:30px; padding:0px; width:25px; line-height: 25px; hight:25px;" name="search_globally" type="object"  class="oe_highlight" icon="fa-search"/>
+                            </group>
+
+                            <!-- <group attrs="{'invisible':[('advance_search','=',True)]}">
+                                <h6>And</h6><field name="global_search_and" nolabel="1" widget="boolean_toggle"/>
+                            </group>
+
+                            <group  attrs="{'invisible':[('advance_search','=',True)]}">
+                                <h3><field name="global_search2" nolabel="1" attrs="{'readonly': [('global_search_and','=',False)]}"/></h3>
+                            </group> -->
+
+                        </group>
+
+                        <group col="3">
+                            
+                            <group>
+                                <field name="advance_search" widget="boolean_toggle"/>
+                            </group>
+                            
+                            <group >
+                            </group>
+                            
+                            <group>
+                            </group>
+
+                        </group>
+
+                        <group style="border-top:1px solid #A9A9A9;" attrs="{'invisible':[('advance_search','=',False)]}">
+                            <group>
+                                <field name="or_operation" widget="boolean_toggle"/>
+                            </group>
+                            <group  id="selection_field_id">
+                                <field name="fields_selection" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}"/>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_sr_no','=',False)]}" on_change="_get_fields_selection()">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_sr_no','=',False)]}">Sr. NO. </h5>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="sr_no_options" attrs="{'invisible':[('need_sr_no','=',False)]}" nolabel="1"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="sr_no" attrs="{'invisible':[('need_sr_no','=',False)]}" nolabel="1"/>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_subject','=',False)]}">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_subject','=',False)]}">Subject</h5>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="subject_options" attrs="{'invisible':[('need_subject','=',False)]}" nolabel="1"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="subject" attrs="{'invisible':[('need_subject','=',False)]}" nolabel="1"/>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="4" attrs="{'invisible':[('need_tags','=',False)]}">
+                            <group>
+                                <group>
+                                    <h5 attrs="{'invisible':[('need_tags','=',False)]}">Tags</h5>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <h6>And</h6><field name="tags_bool" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="tags_options" attrs="{'invisible':[('need_tags','=',False)]}" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="tags_id" attrs="{'invisible':[('need_tags','=',False)]}" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}" nolabel="1"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="4" attrs="{'invisible':[('need_tharav','=',False)]}">
+                            <group>
+                                <group>
+                                    <h5 attrs="{'invisible':[('need_tharav','=',False)]}">Tharav</h5>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <h6>And</h6><field name="tharav_bool" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="tharav_options" attrs="{'invisible':[('need_tharav','=',False)]}" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="tharav_id" attrs="{'invisible':[('need_tharav','=',False)]}" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}" nolabel="1"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_description','=',False)]}">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_description','=',False)]}">Description</h5>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="description_options" attrs="{'invisible':[('need_description','=',False)]}" nolabel="1"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="description" attrs="{'invisible':[('need_description','=',False)]}" nolabel="1"/>
+                            </group>
+                        </group>
+
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_vikram_samvat','=',False)]}">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_vikram_samvat','=',False)]}">Vikram Samvat of Publishing</h5>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="vikram_samvat_options" attrs="{'invisible':[('need_vikram_samvat','=',False)]}" nolabel="1"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="vikram_samvat" attrs="{'invisible':[('need_vikram_samvat','=',False)]}" nolabel="1"/>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_category','=',False)]}">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_category','=',False)]}">Catagory</h5>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="category_options" attrs="{'invisible':[('need_category','=',False)]}" nolabel="1"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="category" attrs="{'invisible':[('need_category','=',False)]}" nolabel="1"/>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_remark','=',False)]}">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_remark','=',False)]}">Remark</h5>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="remark_options" attrs="{'invisible':[('need_remark','=',False)]}" nolabel="1"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="remark" attrs="{'invisible':[('need_remark','=',False)]}" nolabel="1"/>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_star_rating','=',False)]}">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_star_rating','=',False)]}">Start Rating</h5>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="star_rating_options" attrs="{'invisible':[('need_star_rating','=',False)]}" nolabel="1"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="star_rating" attrs="{'invisible':[('need_star_rating','=',False)]}" widget="priority" nolabel="1"/>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="4" attrs="{'invisible':[('need_person','=',False)]}">
+                            <group>
+                                <group>
+                                    <h5 attrs="{'invisible':[('need_person','=',False)]}">Person</h5>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <h6>And</h6><field name="person_bool" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="person_options" attrs="{'invisible':[('need_person','=',False)]}" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="person" attrs="{'invisible':[('need_person','=',False)]}" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}" nolabel="1"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="4" attrs="{'invisible':[('need_sanstha','=',False)]}">
+                            <group>
+                                <group>
+                                    <h5 attrs="{'invisible':[('need_sanstha','=',False)]}">Sanstha</h5>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <h6>And</h6><field name="sanstha_bool" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="sanstha_options" attrs="{'invisible':[('need_sanstha','=',False)]}" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="sanstha" attrs="{'invisible':[('need_sanstha','=',False)]}" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}" nolabel="1"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="4" attrs="{'invisible':[('need_mahatma','=',False)]}">
+                            <group>
+                                <group>
+                                    <h5 attrs="{'invisible':[('need_mahatma','=',False)]}">Mahatma</h5>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <h6>And</h6><field name="mahatma_bool" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="mahatma_options" attrs="{'invisible':[('need_mahatma','=',False)]}" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="mahatma" attrs="{'invisible':[('need_mahatma','=',False)]}" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}" nolabel="1"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="4" attrs="{'invisible':[('need_samuday','=',False)]}">
+                            <group>
+                                <group>
+                                    <h5 attrs="{'invisible':[('need_samuday','=',False)]}">Samuday</h5>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <h6>And</h6><field name="samuday_bool" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="samuday_options" attrs="{'invisible':[('need_samuday','=',False)]}" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="samuday" attrs="{'invisible':[('need_samuday','=',False)]}" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}" nolabel="1"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="4" attrs="{'invisible':[('need_samiti','=',False)]}">
+                            <group>
+                                <group>
+                                    <h5 attrs="{'invisible':[('need_samiti','=',False)]}">Samiti</h5>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <h6>And</h6><field name="samiti_bool" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="samiti_options" attrs="{'invisible':[('need_samiti','=',False)]}" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="samiti" attrs="{'invisible':[('need_samiti','=',False)]}" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}" nolabel="1"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="4" attrs="{'invisible':[('need_link_with_field','=',False)]}">
+                            <group>
+                                <group>
+                                    <h5 attrs="{'invisible':[('need_link_with_field','=',False)]}">Link With Field</h5>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <h6>And</h6><field name="link_with_bool" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="link_with_field_options" attrs="{'invisible':[('need_link_with_field','=',False)]}" nolabel="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="link_with_field" attrs="{'invisible':[('need_link_with_field','=',False)]}" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True, 'no_create_edit':True}" nolabel="1"/>
+                                </group>
+                            </group>
+                        </group>
+
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_publishing_date','=',False)]}">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_publishing_date','=',False)]}">Publishing Date</h5>
+                            </group>
+                            <group>
+                                <h6 attrs="{'invisible':[('need_publishing_date','=',False)]}">Should Be</h6>
+                                <br></br>
+                                <field name="publishing_date_options" attrs="{'invisible':[('need_publishing_date','=',False)]}" nolabel="1"/>
+                            </group>
+                            <group>
+                                <h6 attrs="{'invisible':[('publishing_date_options','in',(False,None,'btw'))]}">Date</h6>
+                                <br></br>
+                                <field name="publishing_date" attrs="{'invisible':[('publishing_date_options','in',(False,None,'btw'))]}" nolabel="1"/>
+                            </group>
+                            <group>                                
+                                <h6 attrs="{'invisible':[('publishing_date_options','!=','btw')]}">Start Date</h6>
+                                <br></br>
+                                <field name="publishing_start_date" attrs="{'invisible':[('publishing_date_options','!=','btw')]}" nolabel="1"/>
+                            </group>
+                            <group>
+                                <h6 attrs="{'invisible':[('publishing_date_options','!=','btw')]}">End Date</h6>
+                                <br></br>
+                                <field name="publishing_end_date" attrs="{'invisible':[('publishing_date_options','!=','btw')]}" nolabel="1"/>
+                            </group>
+                        </group>
+
+                        <group style="border-bottom:1px solid #A9A9A9;" col="3" attrs="{'invisible':[('need_occurence_date','=',False)]}">
+                            <group>
+                                <h5 attrs="{'invisible':[('need_occurence_date','=',False)]}">Occurance Date</h5>
+                            </group>
+                            <group>
+                                <h6 attrs="{'invisible':[('need_occurence_date','=',False)]}">Should Be</h6>
+                                <br></br>
+                                <field name="occurence_date_options" attrs="{'invisible':[('need_occurence_date','=',False)]}" nolabel="1"/>
+                            </group>
+                            <group>
+                                <h6 attrs="{'invisible':[('occurence_date_options','in',(False,None,'btw'))]}">Date</h6>
+                                <br></br>
+                                <field name="occurance_date" attrs="{'invisible':[('occurence_date_options','in',(False,None,'btw'))]}" nolabel="1"/>
+                            </group>
+                            <group>                                
+                                <h6 attrs="{'invisible':[('occurence_date_options','!=','btw')]}">Start Date</h6>
+                                <br></br>
+                                <field name="occurance_start_date" attrs="{'invisible':[('occurence_date_options','!=','btw')]}" nolabel="1"/>
+                            </group>
+                            <group>
+                                <h6 attrs="{'invisible':[('occurence_date_options','!=','btw')]}">End Date</h6>
+                                <br></br>
+                                <field name="occurance_end_date" attrs="{'invisible':[('occurence_date_options','!=','btw')]}" nolabel="1"/>
+                            </group>
+                        </group>                       
+
+                        <group>
+                            <field name="need_sr_no" attrs="{'invisible':1}"/>
+                            <field name="need_subject" attrs="{'invisible':1}"/>
+                            <field name="need_tags" attrs="{'invisible':1}"/>
+                            <field name="need_tharav" attrs="{'invisible':1}"/>
+                            <field name="need_description" attrs="{'invisible':1}"/>
+                            <field name="need_vikram_samvat" attrs="{'invisible':1}"/>
+                            <field name="need_publishing_date" attrs="{'invisible':1}"/>
+                            <field name="need_occurence_date" attrs="{'invisible':1}"/>
+                            <field name="need_category" attrs="{'invisible':1}"/>
+                            <field name="need_remark" attrs="{'invisible':1}"/>
+                            <field name="need_star_rating" attrs="{'invisible':1}"/>
+                            <field name="need_person" attrs="{'invisible':1}"/>
+                            <field name="need_sanstha" attrs="{'invisible':1}"/>
+                            <field name="need_mahatma" attrs="{'invisible':1}"/>
+                            <field name="need_samuday" attrs="{'invisible':1}"/>
+                            <field name="need_samiti" attrs="{'invisible':1}"/>
+                            <field name="need_link_with_field" attrs="{'invisible':1}"/>
+                        </group>
+                        
+                    </sheet>
+                    <footer>
+                        <button  attrs="{'invisible':[('advance_search','=',False)]}" string="Search" type="object" name="search_documents" class="oe_highlight"/>
+                        <button string="Clear" type="object" name="clear_wiz" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="advance_search_action_window"
+            name="Documents Advance Search"
+            res_model="advance.search"
+            view_mode="form"
+            target="new"/>
+
+
+            <!-- ===================================== RESULTS =========================== -->
+
+        <record id="advance_search_result_form_view" model="ir.ui.view">
+            <field name="name">advance.search.result.form</field>
+            <field name="model">advance.search.result</field>
+            <field name="arch" type="xml">
+                <form string="Advance Search Result">
+
+                    <group>
+                        <h1 style="color:#581845;">Documents</h1>
+                        <br></br>
+                        <h7><field name="document_ids"/></h7>
+                    </group>
+
+                    <footer>
+                        <button string="Back" type="object" name="go_to_previous_wizard" class="oe_highlight"/>
+                        <button string="Save" type="object" name="open_search_name" class="oe_highlight"/>
+                        <!-- <button string="Export" type="object" name="open_search_name" class="oe_highlight"/> -->
+                        <!-- <button string="Download Attachments" type="object" name="download_attachments" class="oe_highlight"/> -->
+                        <button string="Close" special="cancel"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <act_window id="advance_search_result_action_window"
+            name="Advance Search Result"
+            res_model="advance.search.result"
+            view_mode="form"
+            target="new"/>
+
+    </data>
+</odoo>

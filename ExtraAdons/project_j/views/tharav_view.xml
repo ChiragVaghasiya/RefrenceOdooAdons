@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+
+        <record id="tharav_form_view" model="ir.ui.view">
+            <field name="name">tharav.model.form</field>
+            <field name="model">tharav.model</field>
+            <field name="arch" type="xml">
+                <form string="Tharav">
+                    <sheet>
+                        <group>
+                            <h6 style="color:#A9A9A9">Tharav</h6>
+                            <br></br>
+                            <h1>
+                                <field name="tharav_id"
+                                       attrs="{'readonly':['&amp;',('self_id2','=',True),('manage_history','=',False)]}"/>
+                            </h1>
+                        </group>
+
+                        <notebook>
+                            <page string="General Info.">
+
+                                <group>
+                                    <group>
+                                        <field name="subject"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="tags_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+                                </group>
+
+                                <group col="3">
+
+                                    <group>
+                                        <field name="start_date"/>
+                                        <!--Removed toggle widget for resolve issue of edit in every view-->
+                                        <field name="manage_history"
+                                               attrs="{'invisible':[('discontinue_date','=', False)]}"/>
+                                        <!--widget="boolean_toggle"-->
+                                    </group>
+
+                                    <group>
+                                        <field name="discontinue_date"/>
+                                        <field name="tharav_subject_and_id" attrs="{'invisible':1}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="paksh_id"/>
+                                        <field name="self_id2" attrs="{'invisible':True}"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+                                    <field name="description"/>
+                                </group>
+
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tharav_tree_view" model="ir.ui.view">
+            <field name="name">tharav.model.tree</field>
+            <field name="model">tharav.model</field>
+            <field name="arch" type="xml">
+                <tree string="Tharav">
+                    <field name="tharav_id"/>
+                    <field name="subject"/>
+                    <field name="paksh_id"/>
+                    <field name="description"/>
+                    <field name="start_date"/>
+                    <field name="discontinue_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="tharav_graph_view" model="ir.ui.view">
+            <field name="name">tharav.model.graph</field>
+            <field name="model">tharav.model</field>
+            <field name="arch" type="xml">
+                <graph string="Tharav Analysis" type="pie">
+                </graph>
+            </field>
+        </record>
+
+        <record id="tharav_action_window" model="ir.actions.act_window">
+            <field name="name">Tharav</field>
+            <field name="res_model">tharav.model</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+    </data>
+</odoo>

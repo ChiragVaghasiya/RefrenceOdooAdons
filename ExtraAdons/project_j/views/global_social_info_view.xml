@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+
+        <record id="social_info_form_view" model="ir.ui.view">
+            <field name="name">social.info.form</field>
+            <field name="model">social.info</field>
+            <field name="arch" type="xml">
+                <form string="Social Info">
+                    <sheet>
+
+                        <group col="3">
+
+                            <group>
+                                <field name="contact_person"/>
+                                <field name="email"/>
+                                <field name="phone_no"/>
+                                <field name="whatsapp_no"/>
+                                <field name="Website"/>
+                            </group>
+
+                            <group>
+                                <field name="you_tube_channel_name"/>
+                                <field name="you_tube_channel_link"/>
+                                <field name="twitter_account_name"/>
+                                <field name="twitter_account_link"/>
+
+                            </group>
+
+                            <group>
+                                <field name="facebook_field"/>
+                                <field name="instagram"/>
+                                <field name="instagram_link"/>
+                                <field name="blog"/>
+                            </group>
+
+                        </group>
+
+                        <group>
+                            <field name="address"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="social_info_tree_view" model="ir.ui.view">
+            <field name="name">social.info.tree</field>
+            <field name="model">social.info</field>
+            <field name="arch" type="xml">
+                <tree string="Social Info">
+                    <field name="contact_person"/>
+                    <field name="email"/>
+                    <field name="phone_no"/>
+                    <field name="whatsapp_no"/>
+                    <field name="address"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="social_info_action_window" model="ir.actions.act_window">
+            <field name="name">Social Info</field>
+            <field name="res_model">social.info</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

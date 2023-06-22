@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <report
+            id="documents_advance_search_export"
+            string="Documents Advance Search Export"
+            model="advance.search.result"
+            report_type="xlsx"
+            name="project_j.advance_search_documents_xlsx"
+            file="project_j.advance_search_documents_xlsx"
+            attachment_use="False"/>
+
+    <report
+            id="documents_advance_search_saved_result_export"
+            string="Documents Advance Search Saved Result Export"
+            model="advance.search.results.model"
+            report_type="xlsx"
+            name="project_j.advance_search_documents_saved_xlsx"
+            file="project_j.advance_search_documents_saved_xlsx"
+            attachment_use="False"/>
+
+</odoo>

@@ -1,0 +1,114 @@
+<odoo>
+    <data>
+
+        <record id="users_form_view" model="ir.ui.view">
+            <field name="name">users.model.form</field>
+            <field name="model">users.model</field>
+            <field name="arch" type="xml">
+                <form string="Users">
+                    <sheet>
+
+                        <group col="3">
+                            <group>
+                                <h2>
+                                    <field name="user_name" force_save="1"/>
+                                </h2>
+                            </group>
+                            <group>
+                            </group>
+                            <group>
+                                <widget name="web_ribbon" text="Active"
+                                        attrs="{'invisible':[('active_user2','=',False)]}"/>
+                                <widget name="web_ribbon" text="Inctive" bg_color="bg-danger"
+                                        attrs="{'invisible':[('active_user2','=',True)]}"/>
+                                <field name="active_user2"></field>
+                            </group>
+                        </group>
+                        <group col="3">
+                            <group>
+                                <field name="first_name"/>
+                                <field name="email"/>
+                                <field name="role" widget="many2many_tags"
+                                       options="{'no_create': True, 'no_create_edit':True, 'color_field': 'color'}"/>
+                            </group>
+                            <group>
+                                <field name="last_name"/>
+                                <field name="phone_no"/>
+                                <field name="gender" widget="radio"/>
+                            </group>
+                            <group>
+                                <field name="address1"/>
+                                <field name="address2"/>
+                                <field name="city"/>
+                                <field name="state"/>
+                                <field name="country"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <h5>Password</h5>
+                                <br></br>
+                                <h1>
+                                    <field name="password_domain" attrs="{'invisible':[('first_name','=',True)]}"/>
+                                </h1>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="users_tree_view" model="ir.ui.view">
+            <field name="name">users.model.tree</field>
+            <field name="model">users.model</field>
+            <field name="arch" type="xml">
+                <tree string="users">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                    <field name="role"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="users_action_window" model="ir.actions.act_window">
+            <field name="name">Users</field>
+            <field name="res_model">users.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="users_role_form_view" model="ir.ui.view">
+            <field name="name">users.role.form</field>
+            <field name="model">users.role</field>
+            <field name="arch" type="xml">
+                <form string="User's Role">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="role_name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="users_role_tree_view" model="ir.ui.view">
+            <field name="name">users.role.tree</field>
+            <field name="model">users.role</field>
+            <field name="arch" type="xml">
+                <tree string="user's Role">
+                    <field name="role_name"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

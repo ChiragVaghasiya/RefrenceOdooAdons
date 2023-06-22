@@ -60,6 +60,6 @@
     'license': "AGPL-3",
     'installable': True,
     'application': True,
-    "sequence" : -100,
+    "sequence" : 200,
 
 }

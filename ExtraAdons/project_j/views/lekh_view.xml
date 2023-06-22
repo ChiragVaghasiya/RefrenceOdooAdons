@@ -1,0 +1,323 @@
+<odoo>
+    <data>
+
+        <record id="lekh_form_view" model="ir.ui.view">
+            <field name="name">lekh.model.form</field>
+            <field name="model">lekh.model</field>
+            <field name="arch" type="xml">
+                <form string="Lekh">
+                    <header>
+                        <button string="Accept" type="object" name="accept_lekh" groups="project_j.project_j_admin"
+                                class="oe_read_only oe_highlight"
+                                attrs="{'invisible': [('state', 'in', (None,False,'accepted'))]}"/>
+                        <button string="Reject" type="object" name="reject_lekh" groups="project_j.project_j_admin"
+                                class="oe_read_only" attrs="{'invisible': [('state','in',(None,False,'rejected'))]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <!-- <button string="Check Duplicate" type="object" name="check_duplicate_records" class="oe_highlight" style="padding:0px; float:right; height:40px; width:110px; text-align: center;"/> -->
+
+                        <notebook>
+                            <page string="General Info">
+                                <group col="3">
+
+                                    <group>
+                                        <field name="rec_state" attrs="{'invisible':1}"/>
+                                        <field name="current_id" attrs="{'invisible':1}"/>
+                                        <field name="self_id2" attrs="{'invisible':1}"/>
+                                        <field name="lekh_sr_no" attrs="{'readonly':[('rec_state','=','created')]}"/>
+                                        <!-- <field name="status"/> -->
+                                    </group>
+
+                                    <group>
+                                        <field name="level1"/>
+                                        <field name="level2"/>
+                                        <field name="level3"/>
+                                        <field name="level4"/>
+                                        <field name="level5"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="tags_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <!-- <field name="tags_id"/> -->
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <field name="description"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Related Info">
+
+                                <field name="lekh_related_info_lines" widget="one2many"></field>
+
+
+                                <!-- <group>
+                                    <h5>Lekh Related Info.</h5>
+                                    <br></br>
+
+                                    <group>
+                                        <field name="lekh_global_related_info" nolabel="1">
+                                            <form>
+                                                <style>
+                                                    .openerp .my_image > img {
+                                                    height: 90px;
+                                                    width: 90px;
+                                                    }
+                                                </style>
+                                                <sheet>
+
+                                                    <group>
+                                                        <field name="news_heading"/>
+                                                    </group>
+
+                                                    <group col="3">
+                                                        <group>
+                                                            <field name="reference_type"/>
+                                                            <field name="samvat_of_occurance"/>
+                                                            <field name="date_of_publishing"/>
+                                                            <field name="occasion_location"/>
+                                                            <field name="ank" attrs="{'invisible':[('reference_type','!=','magazine')], 'required':[('reference_type','=','magazine')]}"/>
+                                                        </group>
+
+                                                        <group>
+                                                            <field name="other_reference_type" attrs="{'invisible':[('reference_type','!=','others')]}"/>
+                                                            <field name="reference" attrs="{'invisible':[('reference_type','=','magazine')], 'required':[('reference_type','!=','magazine')]}"/>
+                                                            <field name="magazine_reference" attrs="{'invisible':[('reference_type','!=','magazine')], 'required':[('reference_type','=','magazine')]}"/>
+                                                            <field name="date_of_occurance"/>
+                                                            <field name="person_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                            <field name="library_field" attrs="{'invisible':[('reference_type','not in',('magazine','book'))], 'required':[('reference_type','in',('magazine','book'))]}"/>
+                                                            <field name="samiti_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}" />
+                                                            <field name="paksh_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                                        </group>
+
+                                                        <group>
+                                                            <field name="vikram_samvant_of_publishing"/>
+                                                            <field name="category"/>
+                                                            <field name="page"/>
+                                                            <field name="sanstha_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                            <field name="samuday_id" widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                            <field name="reference_location" attrs="{'invisible':[('reference_type','!=','news_paper')]}"/>
+                                                        </group>
+                                                    </group>
+
+                                                    <group>
+                                                        <field name="lekh_image" widget="many2many_binary"/>
+                                                        <field name="lekh_image" widget="many2many_kanban">
+                                                            <kanban quick_create="false" create="true" delete="true">
+                                                                <field name="name"/>
+                                                                <templates>
+                                                                    <t t-name="kanban-box">
+                                                                        <div class="oe_kanban_global_click" style="position: relative">
+                                                                            <div style="margin: 0px; padding: 0px;">
+                                                                                <a t-if="! read_only_mode" type="delete" style="position: absolute; padding: 4px; diplay: inline-block">X</a>
+                                                                            </div>
+                                                                            <div class="oe_module_vignette" style="margin-top: 20px;">
+                                                                                <field name="datas" widget="image" class="oe_avatar"/>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="name"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </t>
+                                                                </templates>
+                                                            </kanban>
+                                                        </field>
+                                                    </group>
+
+                                                    <group>
+                                                        <field name="reference_image" widget="many2many_kanban">
+                                                            <kanban quick_create="false" create="true" delete="true">
+                                                                <field name="name"/>
+                                                                <templates>
+                                                                    <t t-name="kanban-box">
+                                                                        <div class="oe_kanban_global_click" style="position: relative">
+                                                                            <div style="margin: 0px; padding: 0px;">
+                                                                                <a t-if="! read_only_mode" type="delete" style="position: absolute; padding: 4px; diplay: inline-block">X</a>
+                                                                            </div>
+                                                                            <div class="oe_module_vignette" style="margin-top: 20px;">
+                                                                                <field name="datas" widget="image" class="oe_avatar"/>
+                                                                            </div>
+                                                                            <div>
+                                                                                <field name="name"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </t>
+                                                                </templates>
+                                                            </kanban>
+                                                        </field>
+                                                    </group>
+
+                                                    <group>
+                                                        <field name="mahatma_id"  widget="many2many_tags" options="{'no_create': True, 'no_open': True, 'color_field': 'color'}"/>
+                                                    </group>
+
+                                                </sheet>
+                                            </form>
+
+                                            <tree>
+                                                <field name="news_heading"/>
+                                                <field name="category"/>
+                                                <field name="date_of_publishing"/>
+                                                <field name="reference_type"/>
+                                                <field name="date_of_occurance"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group> -->
+
+                            </page>
+
+                            <page string="Other Info">
+
+                                <group>
+
+                                    <group>
+                                        <field name="tharav" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="total_page"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+                                    <field name="link_with_field" widget="many2many_tags"
+                                           options="{'color_field': 'color'}"/>
+                                    <field name="remark"/>
+                                </group>
+
+                                <group>
+
+                                    <group>
+                                        <field name="star_rating" widget="priority"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="is_document_available" widget="radio"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+                                    <field name="news_heading_copy" attrs="{'invisible':1}"/>
+                                    <field name="person_copy" attrs="{'invisible':1}"/>
+                                    <field name="sanstha_copy" attrs="{'invisible':1}"/>
+                                    <field name="mahatma_copy" attrs="{'invisible':1}"/>
+                                    <field name="paksh_copy" attrs="{'invisible':1}"/>
+                                    <field name="date_of_occurance_copy" attrs="{'invisible':1}"/>
+                                </group>
+
+                            </page>
+
+
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lekh_tree_view" model="ir.ui.view">
+            <field name="name">lekh.model.tree</field>
+            <field name="model">lekh.model</field>
+            <field name="arch" type="xml">
+                <tree string="Lekh">
+                    <field name="lekh_sr_no"/>
+                    <field name="level1"/>
+                    <field name="news_heading_copy"/>
+                    <field name="person_copy"/>
+                    <field name="sanstha_copy"/>
+                    <field name="mahatma_copy"/>
+                    <field name="paksh_copy"/>
+                    <field name="date_of_occurance_copy"/>
+                    <field name="remark"/>
+                    <field name="state" invisible="1"/>
+                    <button name="accept_lekh" string="Accept" groups="project_j.project_j_admin" type="object"
+                            icon="fa-check" attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                    <button name="reject_lekh" string="Reject" groups="project_j.project_j_admin" type="object"
+                            icon="fa-ban" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- <record id="lekh_search_view" model="ir.ui.view">
+            <field name="name">lekh.model.search</field>
+            <field name="model">lekh.model</field>
+            <field name="arch" type="xml">
+                <search string="Lekh">
+                    <field name="lekh_related_info_lines"/>
+                    <field name="lekh_related_info_lines" filter_domain="[('lekh_related_info_lines.index_content', 'ilike', self)]" string="In Related Info"/>
+                </search>
+            </field>
+        </record> -->
+
+        <record id="lekh_model_search_view" model="ir.ui.view">
+            <field name="name">lekh.model.search</field>
+            <field name="model">lekh.model</field>
+            <field name="arch" type="xml">
+                <search string="Search Lekhs">
+                    <field name="lekh_related_info_lines"
+                           filter_domain="[('lekh_related_info_lines.date_of_occurance', 'ilike', self)]"
+                           string="Date Of Occurrence In Related info."/>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="lekh_graph_view" model="ir.ui.view">
+            <field name="name">lekh.model.graph</field>
+            <field name="model">lekh.model</field>
+            <field name="groups_id" eval="[(4, ref('project_j.project_j_admin'))]"/>
+            <field name="arch" type="xml">
+
+                <graph string="Lekh Analysis" type="pie">
+                    <!-- <field name="state" type="row"/> -->
+                    <!-- <field name="tags_id"/> -->
+                </graph>
+            </field>
+        </record>
+
+        <!-- Lekh Search View-->
+        <record id="view_lekh_filter" model="ir.ui.view">
+            <field name="name">lekh.model.search</field>
+            <field name="model">lekh.model</field>
+            <field name="arch" type="xml">
+                <search string="Search Lekh">
+                    <field name="level1" string="Subject"/>
+                    <field name="total_page" string="Total Page"/>
+                    <filter name="pending" string="Pending" domain="[('state','=','pending')]"/>
+                    <filter name="rejected" string="Rejected" domain="[('state','=','rejected')]"/>
+                    <filter name="accepted" string="Accepted" domain="[('state','=','accepted')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="status" string="Status" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="lekh_action_window" model="ir.actions.act_window">
+            <field name="name">Lekh</field>
+            <field name="res_model">lekh.model</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="search_view_id" ref="view_lekh_filter"/>
+        </record>
+
+
+        <act_window id="multiple_record_update_state_lekh"
+                    name="Update State"
+                    res_model="update.state"
+                    binding_model="lekh.model"
+                    view_mode="form"
+                    target="new"
+                    binding_views="list"/>
+
+
+    </data>
+</odoo>

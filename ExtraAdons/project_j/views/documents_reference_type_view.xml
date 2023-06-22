@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+
+        <record id="documents_reference_type_form_view" model="ir.ui.view">
+            <field name="name">documents.reference.type.form</field>
+            <field name="model">documents.reference.type</field>
+            <field name="arch" type="xml">
+                <form string="Documents Reference Type">
+                    <sheet>
+                        <group>
+                            <h6 style="color:#A9A9A9">Name</h6>
+                            <br></br>
+                            <h1>
+                                <field name="name" string="Name" nolable="1"/>
+                            </h1>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="documents_reference_type_tree_view" model="ir.ui.view">
+            <field name="name">documents.reference.type.tree</field>
+            <field name="model">documents.reference.type</field>
+            <field name="arch" type="xml">
+                <tree string="Documents Reference Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="documents_reference_type_action_window" model="ir.actions.act_window">
+            <field name="name">Documents Reference Type</field>
+            <field name="res_model">documents.reference.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+    </data>
+</odoo>

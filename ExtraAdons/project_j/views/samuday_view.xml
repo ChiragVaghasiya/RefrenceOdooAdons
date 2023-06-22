@@ -1,0 +1,155 @@
+<odoo>
+    <data>
+
+        <record id="samuday_form_view" model="ir.ui.view">
+            <field name="name">samuday.model.form</field>
+            <field name="model">samuday.model</field>
+            <field name="arch" type="xml">
+                <form string="Samuday">
+                    <sheet>
+                        <group>
+                            <group>
+                                <h6 style="color:#A9A9A9">Name</h6>
+                                <br></br>
+                                <h1>
+                                    <field name="samuday_name"/>
+                                </h1>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="General Info">
+
+                                <group col="3">
+                                    <group>
+                                        <field name="paksh_id2"/>
+                                        <field name="gachhadhipati_of_samuday"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="panth_id"/>
+                                        <field name="gachhadhipati_date"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="link_to_tharav" widget="radio"/>
+                                    </group>
+                                </group>
+
+                            </page>
+
+                            <page string="Mahatma" class="oe_read_only">
+                                <group>
+                                    <h1>Mahatma</h1>
+                                    <br></br>
+                                    <field name="mahatma_rec" nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Magazine" class="oe_read_only">
+                                <group>
+                                    <h1>Magazines</h1>
+                                    <br></br>
+                                    <field name="magazine_rec" nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Documents" class="oe_read_only">
+                                <group>
+                                    <h1>Lekh</h1>
+                                    <br></br>
+                                    <field name="lekh_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Nirnaami Lekh</h1>
+                                    <br></br>
+                                    <field name="nirnaami_lekh_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Book</h1>
+                                    <br></br>
+                                    <field name="book_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Video</h1>
+                                    <br></br>
+                                    <!-- <field name="views_id" attrs="{'invisible':1}"/> -->
+                                    <field name="video_rec" nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Tag" class="oe_read_only">
+                                <group>
+                                    <h1>Tags</h1>
+                                    <br></br>
+                                    <field name="tags_rec" widget="many2many_tags" options="{'color_field': 'color'}"
+                                           nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Tharav" class="oe_read_only">
+                                <group>
+                                    <h1>Tharav</h1>
+                                    <br></br>
+                                    <field name="tharav_rec" nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Person" class="oe_read_only">
+                                <group>
+                                    <h1>Person</h1>
+                                    <br></br>
+                                    <field name="person_rec" nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Sanstha" class="oe_read_only">
+                                <group>
+                                    <h1>Sanstha</h1>
+                                    <br></br>
+                                    <field name="sanstha_rec" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="samuday_tree_view" model="ir.ui.view">
+            <field name="name">samuday.model.tree</field>
+            <field name="model">samuday.model</field>
+            <field name="arch" type="xml">
+                <tree string="Samuday">
+                    <field name="samuday_name"/>
+                    <field name="paksh_id2"/>
+                    <field name="panth_id"/>
+                    <field name="gachhadhipati_of_samuday"/>
+                    <field name="gachhadhipati_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="samuday_graph_view" model="ir.ui.view">
+            <field name="name">samuday.model.graph</field>
+            <field name="model">samuday.model</field>
+            <field name="arch" type="xml">
+                <graph string="Samuday Analysis" type="pie">
+                </graph>
+            </field>
+        </record>
+
+        <record id="samuday_action_window" model="ir.actions.act_window">
+            <field name="name">Samuday</field>
+            <field name="res_model">samuday.model</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+    </data>
+</odoo>

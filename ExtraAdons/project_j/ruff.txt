@@ -1,0 +1,97 @@
+A.> Mahatma
+1. mahatma.samuday 
+2. magazine.model
+3. mahatma model it self
+4. person.model
+5. samuday.model
+
+    aa.> Mahatma.Samuday
+    1. book.related.info -- sadhu_bhagvat_id
+    2. lekh.related.info -- sadhu_bhagvat_id
+    3. nirnaami.lekh.related.info -- sadhu_bhagvat_id
+    4. person.model -- mahatma_samuday_id
+    5. sanstha.model -- mahatma_samuday_id
+
+B.> Person
+1. person.sanstha
+2. 
+
+<field name="reader" attrs="{'readonly':['&amp;',('is_magazine_available_in_gg','in',('no','not_sure',False)),('monitor_for_abusive_contents','=',False)]}" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                        <field name="receiver" attrs="{'readonly':['&amp;',('is_magazine_available_in_gg','in',('no','not_sure',False)),('monitor_for_abusive_contents','=',False)]}" widget="many2many_tags" options="{'color_field': 'color'}"/>
+
+C.> Sanstha
+1. person.sanstha
+
+
+
+
+
+
+access_advance_search,access.advance.search,model_advance_search,,1,1,1,1
+access_advance_search_result,access.advance.search.result,model_advance_search_result,,1,1,1,1
+
+
+        <record id="_form_view" model="ir.ui.view">
+            <field name="name">.model.form</field>
+            <field name="model">.model</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name=""/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="_tree_view" model="ir.ui.view">
+            <field name="name">.model.tree</field>
+            <field name="model">.model</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name=""/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="v_action_window" model="ir.actions.act_window">
+            <field name="name"></field>
+            <field name="res_model">.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+                if self.tags_options == 'contains':
+                    DocSearch2 = self.env['documents.model'].search([('doc_type','in',doc_typ), ('tags_id.id','in',ids_of_tag)])
+                    if self.tags_bool:
+                        for tag in self.tags_id:
+                            domain.append(('tags_id.id','=',tag.id))
+                        DocSearch2 = self.env['documents.model'].search(domain)
+                elif self.tags_options == 'not_contains':
+                    DocSearch2 = self.env['documents.model'].search([('doc_type','in',doc_typ), ('tags_id.id','not in',ids_of_tag)])
+                    print ("_+_+_+_+_+__+_+ tag_bool ", self.tags_bool)
+                    if self.tags_bool:
+                        
+                        lmd_fun = lambda x : [doc.id for doc in x]
+                        list_of_doc_ids = lmd_fun(DocSearch2)
+
+                        print(">>>>>><<<<<<<<<<    >>>>>>>>><<<<<<<<<<  LAMBDA ", list_of_doc_ids)
+                        if DocSearch2:
+                            m = 0
+                            for doc in DocSearch2:
+                                print("00000000000 id ", doc.id)
+                                if doc.tags_id not in elements and len(doc.tags_id) > 0:
+                                    for tag in doc.tags_id:
+                                        a = tag.id
+                                        if a in ids_of_tag:
+                                            m += 1
+                                            print("________....... >>>>>> ", doc.id)
+                                            list_of_doc_ids.remove(doc.id)
+                            if m>0:
+                                DocSearch2 = self.env['documents.model'].browse(list_of_doc_ids)

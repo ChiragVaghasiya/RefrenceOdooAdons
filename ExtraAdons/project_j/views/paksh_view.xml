@@ -1,0 +1,168 @@
+<odoo>
+    <data>
+
+        <record id="paksh_form_view" model="ir.ui.view">
+            <field name="name">paksh.model.form</field>
+            <field name="model">paksh.model</field>
+            <field name="arch" type="xml">
+                <form string="Paksh">
+
+                    <header>
+                        <button string="Accept" type="object" name="accept_paksh" groups="project_j.project_j_admin"
+                                class="oe_highlight" attrs="{'invisible': [('state', 'in', (None,False,'accepted'))]}"/>
+                        <button string="Reject" type="object" name="reject_paksh" groups="project_j.project_j_admin"
+                                attrs="{'invisible': [('state','in',(None,False,'rejected'))]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+
+                    <sheet>
+                        <notebook>
+
+                            <page string="General Info.">
+
+                                <group col="3">
+                                    <group>
+                                        <field name="paksh_name_gujarati"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="paksh_name_hindi"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="paksh_name"/>
+
+                                    </group>
+                                </group>
+
+                            </page>
+
+                            <page string="Samuday" class="oe_read_only">
+
+                                <group>
+                                    <h1>Samudays</h1>
+                                    <br></br>
+                                    <field name="samuday_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Mahatma" class="oe_read_only">
+
+                                <group>
+                                    <h1>Mahatma</h1>
+                                    <br></br>
+                                    <field name="mahatma_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Magazine" class="oe_read_only">
+
+                                <group>
+                                    <h1>Magazine</h1>
+                                    <br></br>
+                                    <field name="magazine_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Tharav" class="oe_read_only">
+
+                                <group>
+                                    <h1>Tharav</h1>
+                                    <br></br>
+                                    <field name="tharav_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Document" class="oe_read_only">
+
+                                <group>
+                                    <h1>Lekh</h1>
+                                    <br></br>
+                                    <field name="lekh_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Sanstha" class="oe_read_only">
+
+                                <group>
+                                    <h1>Sanstha</h1>
+                                    <br></br>
+                                    <field name="sanstha_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Person" class="oe_read_only">
+
+                                <group>
+                                    <h1>Person</h1>
+                                    <br></br>
+                                    <field name="person_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Tags" class="oe_read_only">
+
+                                <group>
+                                    <h1>Tags</h1>
+                                    <br></br>
+                                    <field name="tags_rec" widget="many2many_tags" options="{'color_field': 'color'}"
+                                           nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="paksh_tree_view" model="ir.ui.view">
+            <field name="name">paksh.model.tree</field>
+            <field name="model">paksh.model</field>
+            <field name="arch" type="xml">
+                <tree string="Paksh">
+                    <field name="paksh_name_gujarati"/>
+                    <field name="paksh_name_hindi"/>
+                    <field name="paksh_name"/>
+                    <field name="create_date"/>
+                    <field name="state" invisible="1"/>
+                    <button name="accept_paksh" string="Accept" groups="project_j.project_j_admin" type="object"
+                            icon="fa-check" attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                    <button name="reject_paksh" string="Reject" groups="project_j.project_j_admin" type="object"
+                            icon="fa-ban" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="paksh_action_window" model="ir.actions.act_window">
+            <field name="name">Paksh Info</field>
+            <field name="res_model">paksh.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <act_window id="multiple_record_update_state_paksh"
+                    name="Update State"
+                    res_model="update.state"
+                    binding_model="paksh.model"
+                    view_mode="form"
+                    target="new"
+                    binding_views="list"/>
+
+    </data>
+</odoo>

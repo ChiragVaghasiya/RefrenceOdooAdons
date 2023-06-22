@@ -1,0 +1,239 @@
+<odoo>
+    <data>
+
+        <record id="samiti_form_view" model="ir.ui.view">
+            <field name="name">samiti.model.form</field>
+            <field name="model">samiti.model</field>
+            <field name="arch" type="xml">
+                <form string="Samiti">
+                    <sheet>
+
+                        <div name="button_box">
+                            <button class="oe_stat_button" type="object"
+                                    name="pass_method"
+                                    icon="fa-users"
+                                    style="font-size:22px; color:#7c7bad;">
+                                <field string="Total Members" name="total_members" widget="statinfo"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <h6 style="color:#A9A9A9">Name</h6>
+                            <br></br>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </group>
+
+                        <notebook>
+                            <page string="General Info.">
+
+                                <group col="3">
+                                    <group>
+                                        <field name="samiti_sr_no"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+
+                                <group col="3">
+
+                                    <group>
+                                        <field name="start_date"/>
+                                        <field name="start_date_vikram_samvant"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="end_date"/>
+                                        <field name="end_date_vikram_samvant"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="rec_state" attrs="{'invisible':1}"/>
+                                        <field name="search_date"/>
+                                    </group>
+                                    <group>
+                                        <field name="description"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Members">
+                                <group>
+
+                                    <group string="Mahatma">
+                                        <field name="samiti_mahatma_id" nolabel="1"/>
+                                    </group>
+
+                                    <group string="Person">
+                                        <field name="samiti_person_id" nolabel="1"/>
+                                    </group>
+
+                                </group>
+                            </page>
+
+                            <page string="Documents">
+
+                                <group>
+                                    <h1>Lekh</h1>
+                                    <br></br>
+                                    <field name="lekh_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Nirnaami Lekh</h1>
+                                    <br></br>
+                                    <field name="nirnaami_lekh_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Book</h1>
+                                    <br></br>
+                                    <field name="book_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Video</h1>
+                                    <br></br>
+                                    <field name="video_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Samuday" class="oe_read_only">
+
+                                <group>
+                                    <h1>Samuday</h1>
+                                    <br></br>
+                                    <field name="samuday_rec" nolabel="1"/>
+                                </group>
+
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="samiti_tree_view" model="ir.ui.view">
+            <field name="name">samiti.model.tree</field>
+            <field name="model">samiti.model</field>
+            <field name="arch" type="xml">
+                <tree string="Samiti">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="samiti_action_window" model="ir.actions.act_window">
+            <field name="name">Samiti</field>
+            <field name="res_model">samiti.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>> Samiti Person <<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+        <record id="samiti_person_form_view" model="ir.ui.view">
+            <field name="name">samiti.person.form</field>
+            <field name="model">samiti.person</field>
+            <field name="arch" type="xml">
+                <form string="Samiti Person">
+                    <sheet>
+                        <group>
+                            <h6 style="color:#A9A9A9">Person Name</h6>
+                            <br></br>
+                            <h1>
+                                <field name="person_id"/>
+                            </h1>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="start_date_vikram_samvant"/>
+                            </group>
+                            <group>
+                                <field name="end_date"/>
+                                <field name="end_date_vikram_samvant"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="samiti_person_tree_view" model="ir.ui.view">
+            <field name="name">samiti.person.tree</field>
+            <field name="model">samiti.person</field>
+            <field name="arch" type="xml">
+                <tree string="Samiti Person">
+                    <field name="person_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="samiti_person_action_window" model="ir.actions.act_window">
+            <field name="name">Samiti Person</field>
+            <field name="res_model">samiti.person</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>> Samiti Mahatma <<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+        <record id="samiti_mahatma_form_view" model="ir.ui.view">
+            <field name="name">samiti.mahatma.form</field>
+            <field name="model">samiti.mahatma</field>
+            <field name="arch" type="xml">
+                <form string="Samiti Mahatma">
+                    <sheet>
+                        <group>
+                            <h6 style="color:#A9A9A9">Mahatma Name</h6>
+                            <br></br>
+                            <h1>
+                                <field name="mahatma_id"/>
+                            </h1>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="start_date_vikram_samvant"/>
+                            </group>
+                            <group>
+                                <field name="end_date"/>
+                                <field name="end_date_vikram_samvant"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="samiti_mahatma_tree_view" model="ir.ui.view">
+            <field name="name">samiti.mahatma.tree</field>
+            <field name="model">samiti.mahatma</field>
+            <field name="arch" type="xml">
+                <tree string="Samiti Mahatma">
+                    <field name="mahatma_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="samiti_mahatma_action_window" model="ir.actions.act_window">
+            <field name="name">Samiti Mahatma</field>
+            <field name="res_model">samiti.mahatma</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

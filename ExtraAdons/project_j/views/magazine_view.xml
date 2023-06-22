@@ -1,0 +1,327 @@
+<odoo>
+    <data>
+
+        <!-- ============================ MAGAZINE ========================= -->
+
+        <record id="magazine_form_view" model="ir.ui.view">
+            <field name="name">magazine.model.form</field>
+            <field name="model">magazine.model</field>
+            <field name="arch" type="xml">
+                <form string="Magazine">
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <widget name="web_ribbon" text="Complete"
+                                        attrs="{'invisible':[('complete_record','=',False)]}"/>
+                                <widget name="web_ribbon" text="Incomplete" bg_color="bg-danger"
+                                        attrs="{'invisible':[('complete_record','=',True)]}"/>
+                                <h6 style="color:#A9A9A9">Name</h6>
+                                <br></br>
+                                <h1>
+                                    <field name="name"/>
+                                </h1>
+                                <field name="complete_record" attrs="{'invisible':1}"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="General Info.">
+
+                                <group col="3">
+
+                                    <group>
+                                        <field name="magazine_type"
+                                               attrs="{'readonly': [('monitor_for_abusive_contents','=',True)]}"/>
+                                        <field name="magazine_state"/>
+                                        <field name="discontinue_date"
+                                               attrs="{'invisible':[('magazine_state','!=','discontinued')], 'required':[('magazine_state','=','discontinued')]}"/>
+                                        <field name="is_emagazine"/>
+                                        <field name="url_for_emagazine"
+                                               attrs="{'invisible':[('is_emagazine','=',False)]}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="language_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="severity"/>
+                                        <field name="magazine_start_date"/>
+                                        <field name="publication_date"
+                                               attrs="{'invisible':[('magazine_type','not in',('varsik','dvimasik','trimasik','ardhamasik'))]}"/>
+                                        <field name="publication_date_nums"
+                                               attrs="{'invisible':[('magazine_type','!=','mashik')]}"/>
+                                        <field name="publication_date_days"
+                                               attrs="{'invisible':[('magazine_type','!=','saptahik')]}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="link_magazine" domain="[('id','!=', current_id)]"/>
+                                        <field name="tags_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="paksh_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+
+                                        <field name="reading_category"
+                                               attrs="{'invisible':[('monitor_for_abusive_contents','=',False)]}"/>
+                                        <field name="publication_location"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+                                    <group>
+                                        <field name="publication_start_year"/>
+                                        <field name="publication_start_year_vikram_samvant"/>
+                                    </group>
+                                    <group>
+                                        <field name="publication_end_year"/>
+                                        <field name="publication_end_year_vikram_samvant"/>
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <field name="current_id" attrs="{'invisible':1}"/>
+                                    <field name="description"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Related Info.">
+
+<!--                                <group col="3">-->
+                                <!--Modified view Start-->
+                                <group>
+                                    <group>
+                                        <field name="person_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+<!--                                    </group>-->
+<!--                                    <group>-->
+                                        <field name="sanstha_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+                                    <group>
+                                        <field name="mahatma_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <!--Start | New added as per PRJ-11-->
+                                        <field name="samuday_ids" widget="many2many_tags"
+                                               options="{'color_field': 'color'}" readonly="1" force_save="1"/>
+                                        <!--End-->
+                                    </group>
+                                </group>
+                                <!--End-->
+
+                                <group>
+                                    <field name="person_copy" attrs="{'invisible':1}"/>
+                                    <field name="sanstha_copy" attrs="{'invisible':1}"/>
+                                    <field name="mahatma_copy" attrs="{'invisible':1}"/>
+                                    <field name="language_copy" attrs="{'invisible':1}"/>
+                                    <field name="paksh_copy" attrs="{'invisible':1}"/>
+                                </group>
+
+                                <group>
+                                    <field name="magazine_social_info_lines"/>
+                                </group>
+
+                                <group>
+                                    <field name="remark"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Other Info.">
+                                <group>
+                                    <group>
+                                        <field name="is_magazine_available_in_gg"/>
+                                        <field name="magazine_group"/>
+                                        <field name="monitor_for_abusive_contents"/>
+                                        <field name="referring_category"/>
+                                        <!--<field name="referring_category"
+                                               attrs="{'invisible':[('monitor_for_abusive_contents','=',False)]}"/>-->
+                                    </group>
+                                    <group>
+                                        <field name="is_magazine_coming_to_gg"/>
+                                        <field name="editor"/>
+                                        <field name="reader"
+                                               attrs="{'readonly':[('monitor_for_abusive_contents','=',False)], 'invisible':[('is_magazine_available_in_gg','=','yes')]}"
+                                               widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                        <field name="receiver"
+                                               attrs="{'readonly':[('monitor_for_abusive_contents','=',False)], 'invisible':[('is_magazine_available_in_gg','=','yes')]}"
+                                               widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Documents" class="oe_read_only">
+                                <group>
+                                    <h1>Lekh</h1>
+                                    <br></br>
+                                    <field name="lekh_rec" nolabel="1"/>
+                                </group>
+
+                                <!-- <group>
+                                    <h1>Nirnaami Lekh</h1>
+                                    <br></br>
+                                    <field name="nirnaami_lekh_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Book</h1>
+                                    <br></br>
+                                    <field name="book_rec" nolabel="1"/>
+                                </group>
+
+                                <group>
+                                    <h1>Video</h1>
+                                    <br></br>
+                                    <field name="video_rec" nolabel="1"/>
+                                </group> -->
+                            </page>
+
+                            <page string="Tags" class="oe_read_only">
+                                <group>
+                                    <h1>Tags</h1>
+                                    <br></br>
+                                    <field name="tags_rec" widget="many2many_tags" options="{'color_field': 'color'}"
+                                           nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="magazine_tree_view" model="ir.ui.view">
+            <field name="name">magazine.model.tree</field>
+            <field name="model">magazine.model</field>
+            <field name="arch" type="xml">
+                <!-- <tree> -->
+                <tree string="Magazine" decoration-danger="complete_record == False"
+                      decoration-success="complete_record == True">
+                    <field name="complete_record" invisible="1"/>
+                    <field name="name"/>
+                    <field name="person_id"/>
+                    <field name="sanstha_id"/>
+                    <field name="paksh_id"/>
+                    <field name="magazine_type"/>
+                    <field name="language_id"/>
+                    <field name="referring_category"/>
+                    <field name="severity"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="magazine_graph_view" model="ir.ui.view">
+            <field name="name">magazine.model.graph</field>
+            <field name="model">magazine.model</field>
+            <field name="arch" type="xml">
+                <graph string="Magazine Analysis" type="pie">
+                </graph>
+            </field>
+        </record>
+
+        <record id="magazine_sesarch_view" model="ir.ui.view">
+            <field name="name">magazine.model.search</field>
+            <field name="model">magazine.model</field>
+            <field name="arch" type="xml">
+                <search string="Magazine Search">
+                    <field name="complete_record"/>
+                    <filter string="Complete Record" name="complete_record" domain="[('complete_record','=',True)]"/>
+                    <filter string="Incomplete Record" name="incomplete_record"
+                            domain="[('complete_record','=',False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="magazine_action_window" model="ir.actions.act_window">
+            <field name="name">Magazine</field>
+            <field name="res_model">magazine.model</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+        <act_window id="magazine_save_search"
+                    name="Save Search"
+                    res_model="search.name"
+                    binding_model="magazine.model"
+                    view_mode="form"
+                    target="new"
+                    binding_views="list"/>
+
+
+        <!-- =========================== Magazine Type ============================= -->
+
+        <record id="magazine_type_form_view" model="ir.ui.view">
+            <field name="name">magazine.type.form</field>
+            <field name="model">magazine.type</field>
+            <field name="arch" type="xml">
+                <form string="Magazine Type">
+
+                    <header>
+                        <button string="Accept" type="object" name="accept_magazine_type"
+                                groups="project_j.project_j_admin"
+                                attrs="{'invisible': [('state', 'in', (None,False,'accepted'))]}"/>
+                        <button string="Reject" type="object" name="reject_magazine_type"
+                                groups="project_j.project_j_admin" class="oe_highlight"
+                                attrs="{'invisible': [('state','in',(None,False,'rejected'))]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+
+                    <sheet>
+                        <group col="3">
+                            <group>
+                                <field name="magazine_name_gujarati"/>
+                            </group>
+                            <group>
+                                <field name="magazine_name_hindi"/>
+                            </group>
+                            <group>
+                                <field name="magazine_name"/>
+                            </group>
+                        </group>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="magazine_type_tree_view" model="ir.ui.view">
+            <field name="name">magazine.type.tree</field>
+            <field name="model">magazine.type</field>
+            <field name="arch" type="xml">
+                <tree string="Magazine Type">
+                    <field name="magazine_name_gujarati"/>
+                    <field name="magazine_name_hindi"/>
+                    <field name="magazine_name"/>
+                    <field name="create_date"/>
+                    <field name="state" invisible="1"/>
+                    <button name="accept_magazine_type" string="Accept" groups="project_j.project_j_admin" type="object"
+                            icon="fa-check" attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                    <button name="reject_magazine_type" string="Reject" groups="project_j.project_j_admin" type="object"
+                            icon="fa-ban" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="magazine_type_action_window" model="ir.actions.act_window">
+            <field name="name">Magazine Type</field>
+            <field name="res_model">magazine.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <act_window id="multiple_record_update_state_magazine_type"
+                    name="Update State"
+                    res_model="update.state"
+                    binding_model="magazine.type"
+                    view_mode="form"
+                    target="new"
+                    binding_views="list"/>
+
+
+    </data>
+</odoo>

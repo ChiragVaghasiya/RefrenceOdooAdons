@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+
+        <record id="project_j_scheduler_form_view" model="ir.ui.view">
+            <field name="name">project.j.scheduler.form</field>
+            <field name="model">project.j.scheduler</field>
+            <field name="arch" type="xml">
+                <form string="Project-J Scheduler">
+                    <header>
+                        <button string="Activate" type="object" name="actvate_schedular"
+                                groups="project_j.project_j_admin" class="oe_highlight oe_read_only"
+                                attrs="{'invisible': [('state', 'in', ('None','False','active'))]}"/>
+                        <button string="Deactivate" type="object" name="deactivate_schedular"
+                                groups="project_j.project_j_admin" class="oe_highlight oe_read_only"
+                                attrs="{'invisible': [('state','in',(None,False,'inactive'))]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <h1>
+                                <field name="scheduler_name"/>
+                            </h1>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="rec_state" attrs="{'invisible':1}"/>
+                                <!-- <field name="model_id" attrs="{'invisible':1, 'readonly':[('rec_state','=','created')]}"/> -->
+                                <!-- <field name="field_id" attrs="{'readonly':[('rec_state','=','created')]}"/> -->
+                                <field name="number_of_call" attrs="{'invisible':1}"/>
+                                <field name="execute_number"/>
+                            </group>
+                            <group>
+
+                                <field name="execute_unit" widget="radio"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <group attrs="{'invisible':[('execute_unit','in',(None, False))]}">
+                                <h4>
+                                    <field name="info_line" attrs="{'readonly':1}"/>
+                                </h4>
+                            </group>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="project_j_scheduler_tree_view" model="ir.ui.view">
+            <field name="name">project.j.scheduler.tree</field>
+            <field name="model">project.j.scheduler</field>
+            <field name="arch" type="xml">
+                <tree string="Project-J Scheduler">
+                    <field name="scheduler_name"/>
+                    <!-- <field name="model_id"/> -->
+                    <field name="execute_number"/>
+                    <field name="execute_unit"/>
+                    <field name="number_of_call"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="project_j_scheduler_action_window" model="ir.actions.act_window">
+            <field name="name">Project-J Scheduler</field>
+            <field name="res_model">project.j.scheduler</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

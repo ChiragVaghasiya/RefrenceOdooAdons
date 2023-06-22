@@ -1,0 +1,238 @@
+<odoo>
+    <data>
+
+        <record id="sanstha_form_view" model="ir.ui.view">
+            <field name="name">sanstha.model.form</field>
+            <field name="model">sanstha.model</field>
+            <field name="arch" type="xml">
+                <form string="Sanstha">
+
+                    <header>
+                        <button string="Accept" type="object" name="accept_sanstha" groups="project_j.project_j_admin"
+                                attrs="{'invisible': [('state', 'in', (None,False,'accepted'))]}"/>
+                        <button string="Reject" type="object" name="reject_sanstha" groups="project_j.project_j_admin"
+                                class="oe_highlight" attrs="{'invisible': [('state','in',(None,False,'rejected'))]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+
+                    <sheet>
+
+                        <group>
+                            <widget name="web_ribbon" text="Complete"
+                                    attrs="{'invisible':[('complete_record','=',False)]}"/>
+                            <widget name="web_ribbon" text="Incomplete" bg_color="bg-danger"
+                                    attrs="{'invisible':[('complete_record','=',True)]}"/>
+                            <field name="complete_record" attrs="{'invisible':1}"/>
+                        </group>
+
+                        <group>
+                            <h6 style="color:#A9A9A9">Name</h6>
+                            <br></br>
+                            <h1>
+                                <field name="sanstha_name" string="Name" nolable="1"/>
+                            </h1>
+                            <br></br>
+
+                            <group>
+
+                                <group>
+                                    <field name="other_name"/>
+                                </group>
+
+                                <group>
+                                    <field name="location"/>
+                                </group>
+
+                            </group>
+
+                        </group>
+
+                        <notebook>
+                            <page string="General Info">
+                                <group>
+
+                                    <group>
+                                        <field name="status"/>
+                                        <field name="head_sanstha"/>
+                                        <field name="tag_id" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="paksh_id"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="mahatma_id"/>
+                                        <field name="samuday_id"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="associated_person" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                        <field name="associated_magazine" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+
+                                    <group>
+                                        <field name="pramukh">
+                                            <form>
+                                                <sheet>
+
+                                                    <group>
+
+                                                        <group>
+                                                            <h6 style="color:#808080">Pramukh</h6>
+                                                            <br></br>
+                                                            <field name="person_id" nolabel="1"/>
+                                                        </group>
+
+                                                        <group>
+                                                            <field name="start_date"/>
+                                                            <field name="end_date"/>
+                                                        </group>
+
+                                                    </group>
+
+                                                </sheet>
+                                            </form>
+
+                                            <tree>
+                                                <field name="person_id" string="Pramukh"/>
+                                                <field name="start_date"/>
+                                                <field name="end_date"/>
+                                            </tree>
+
+                                        </field>
+                                        <field name="address"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="trustee">
+                                            <form>
+                                                <sheet>
+
+                                                    <group>
+
+                                                        <group>
+                                                            <h6 style="color:#808080">Trustee</h6>
+                                                            <br></br>
+                                                            <field name="person_id" nolabel="1"/>
+                                                        </group>
+
+                                                        <group>
+                                                            <field name="start_date"/>
+                                                            <field name="end_date"/>
+                                                        </group>
+
+                                                    </group>
+
+                                                </sheet>
+                                            </form>
+
+                                            <tree>
+                                                <field name="person_id" string="Trustee"/>
+                                                <field name="start_date"/>
+                                                <field name="end_date"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group>
+
+                                <group>
+                                    <h6 style="color:#808080">description</h6>
+                                    <br></br>
+                                    <field name="description" nolabel="1"/>
+                                    <field name="rec_state" attrs="{'invisible':1}"/>
+                                </group>
+
+                                <group>
+                                    <h6 style="color:#808080">Remark</h6>
+                                    <br></br>
+                                    <field name="remark" nolabel="1"/>
+
+                                </group>
+
+                            </page>
+
+                            <page string="Social Info">
+
+                                <group>
+                                    <field name="sanstha_social_info_lines"/>
+                                </group>
+
+                            </page>
+
+                            <page string="Tharav" class="oe_read_only">
+
+                                <group>
+                                    <h1>Tharav</h1>
+                                    <br></br>
+                                    <field name="tharav_rec" nolabel="1"
+                                           attrs="{'invisible':[('rec_state','=','draft')]}"/>
+                                </group>
+
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="sanstha_tree_view" model="ir.ui.view">
+            <field name="name">sanstha.model.tree</field>
+            <field name="model">sanstha.model</field>
+            <field name="arch" type="xml">
+                <tree string="Sanstha" decoration-danger="complete_record == False"
+                      decoration-success="complete_record == True">
+                    <field name="complete_record" invisible="1"/>
+                    <field name="sanstha_name"/>
+                    <field name="paksh_id"/>
+                    <field name="pramukh"/>
+                    <field name="trustee"/>
+                    <field name="state" invisible="1"/>
+                    <button name="accept_sanstha" string="Accept" groups="project_j.project_j_admin" type="object"
+                            icon="fa-check" attrs="{'invisible': [('state', '=', 'accepted')]}"/>
+                    <button name="reject_sanstha" string="Reject" groups="project_j.project_j_admin" type="object"
+                            icon="fa-ban" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sanstha_sesarch_view" model="ir.ui.view">
+            <field name="name">sanstha.model.search</field>
+            <field name="model">sanstha.model</field>
+            <field name="arch" type="xml">
+                <search string="Sanstha Search">
+                    <field name="complete_record"/>
+                    <filter string="Complete Record" name="complete_record" domain="[('complete_record','=',True)]"/>
+                    <filter string="Incomplete Record" name="incomplete_record"
+                            domain="[('complete_record','=',False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="sanstha_action_window" model="ir.actions.act_window">
+            <field name="name">Sanstha</field>
+            <field name="res_model">sanstha.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <act_window id="multiple_record_update_state_sanstha"
+                    name="Update State"
+                    res_model="update.state"
+                    binding_model="sanstha.model"
+                    view_mode="form"
+                    target="new"
+                    binding_views="list"/>
+
+    </data>
+</odoo>

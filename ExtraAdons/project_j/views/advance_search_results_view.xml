@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+
+        <record id="advance_search_results_model_form_view" model="ir.ui.view">
+            <field name="name">advance.search.results.model.form</field>
+            <field name="model">advance.search.results.model</field>
+            <field name="arch" type="xml">
+                <form string="Advance Search Results" create="false">
+                    <sheet>
+
+                        <div name="button_box">
+                            <button class="oe_stat_button" type="object"
+                                    name="pass_method"
+                                    icon="fa-list"
+                                    style="font-size:22px; color:#7c7bad;">
+                                <field string="Total Records" name="results_count" widget="statinfo"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <h6 style="color:#A9A9A9">Name</h6>
+                            <br></br>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </group>
+
+                        <group col="3">
+                            <group>
+                                <field name="result_type"/>
+                            </group>
+                            <group>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                        <group attrs="{'invisible':[('result_type','!=','doc')]}">
+                            <group string="Documents">
+                                <field name="doc_ids" nolabel="1"/>
+                            </group>
+                        </group>
+
+                        <group attrs="{'invisible':[('result_type','!=','magazine')]}">
+                            <field name="magazine_ids" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="person_copy"/>
+                                    <field name="sanstha_copy"/>
+                                    <field name="paksh_copy"/>
+                                    <field name="magazine_type"/>
+                                </tree>
+                            </field>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="advance_search_results_model_tree_view" model="ir.ui.view">
+            <field name="name">advance.search.results.model.tree</field>
+            <field name="model">advance.search.results.model</field>
+            <field name="arch" type="xml">
+                <tree string="Advance Search Results">
+                    <field name="name"/>
+                    <field name="results_count"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="advance_search_results_model_action_window" model="ir.actions.act_window">
+            <field name="name">Advance Search Saved Results</field>
+            <field name="res_model">advance.search.results.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
