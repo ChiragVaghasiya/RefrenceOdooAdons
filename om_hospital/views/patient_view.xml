@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!-- server  -->
+    <!-- server  -->
     <record model="ir.actions.server" id="action_mail__to_patient">
         <field name="name">Mail to patient</field>
         <field name="type">ir.actions.server</field>
@@ -18,65 +18,65 @@
     </record>
 
 
-<!-- *********** FORM VIEW ************ -->
+    <!-- *********** FORM VIEW ************ -->
     <record id="view_hospital_patient_form" model="ir.ui.view">
-            <field name="name">hospital.patient.form</field>
-            <field name="model">hospital.patient</field>
-            <field name="arch" type="xml">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
 
-                <!-- <form create='0' delete='0'> -->
-                <form>
-                    <sheet>
-                        
-                        <!-- ************ ALERT IN TOP OF THE SHEET *********** -->
-                        <div class="alert alert-info text-center o_form_header" 
-                             attrs="{'invisible': [('is_birthday', '=', False)]}" 
-                             role="alert">
-                            <a class="close" data-dismiss="alert" href="#" aria-                                                                     ="Close"><i title="Close" class="small fa fa-times"/></a>
-                            <div>
-                                <strong>Today is Birthday !!!!!</strong>
-                            </div>
-                            <div>
+            <!-- <form create='0' delete='0'> -->
+            <form>
+                <sheet>
+
+                    <!-- ************ ALERT IN TOP OF THE SHEET *********** -->
+                    <div class="alert alert-info text-center o_form_header" attrs="{'invisible': [('is_birthday', '=', False)]}" role="alert">
+                        <a class="close" data-dismiss="alert" href="#" aria-                                                                     ="Close">
+                            <i title="Close" class="small fa fa-times"/>
+                        </a>
+                        <div>
+                            <strong>Today is Birthday !!!!!</strong>
+                        </div>
+                        <div>
                                 Wish <field name="name" readonly="1" />
-                            </div>
                         </div>
+                    </div>
 
-                        <!-- ***********  NAME field Motu Dekhase : AANATHI *********** -->
-                        <div class="oe_title">
-                            <h1>
-                                <label for="name" string="Name" class="oe_edit_only" />
-                                <field name="name" required="1"></field>
-                            </h1>
-                        </div>
+                    <!-- ***********  NAME field Motu Dekhase : AANATHI *********** -->
+                    <div class="oe_title">
+                        <h1>
+                            <label for="name" string="Name" class="oe_edit_only" />
+                            <field name="name" required="1"></field>
+                        </h1>
+                    </div>
 
-                        <field name="image" widget="image" class="oe_avatar"/>
+                    <field name="image" widget="image" class="oe_avatar"/>
 
-                            <group>
-                                <group>
-                                    <field  name="date_of_birth"></field>
-                                    <field  name="age"></field>
-                                    <field  name="active" widget="boolean_toggle"></field>
+                    <group>
+                        <group>
+                            <field name="date_of_birth"></field>
+                            <field name="age"></field>
+                            <field name="active" widget="boolean_toggle"></field>
 
-                                    <!-- *********** "attrs" Tyare Vapara ke Jyare "Field" ne "Condition" aapine "Kaik Action" karavvu hoy (ex."'HIDE KARVU HOY','READONLY KARVU HOY','etc...'")... ********** -->
-                                    <field  name="parent" attrs="{'invisible': ['|' , ('age', '>', 18) , ('gender', '=', 'male')]}"/>
+                            <!-- *********** "attrs" Tyare Vapara ke Jyare "Field" ne "Condition" aapine "Kaik Action" karavvu hoy (ex."'HIDE KARVU HOY','READONLY KARVU HOY','etc...'")... ********** -->
+                            <field name="parent" attrs="{'invisible': ['|' , ('age', '>', 18) , ('gender', '=', 'male')]}"/>
 
-                                    <!-- <field  name="active" invisible="1"></field> -->
-                                </group>
-                                <group >
-                                    <field  name="gender" widget="radio"></field>
-                                    <field  name="ref"></field>
-                                    <field  name="tags_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"></field>
-                                    <!-- "many2many_checkboxes" pan aave...  -->
-                                    <field  name="is_birthday" invisible="1"/>
-                                </group>
-                                <group name="other_info" string="Other Information">
-                                    <field  name="phone" widget="phone"></field>
-                                    <field  name="email" widget="email"></field>
-                                    <field  name="website" widget="url"></field>
+                            <!-- <field name="active" invisible="1"></field> -->
+                        </group>
+                        <group >
+                            <field name="gender" widget="radio"></field>
+                            <field name="ref"></field>
+                            <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"></field>
+                            <!-- "many2many_checkboxes" pan aave...  -->
+                            <field name="is_birthday" invisible="1"/>
+                        </group>
+                        <group name="other_info" string="Other Information">
+                            <field name="phone" widget="phone"></field>
+                            <field name="email" widget="email"></field>
+                            <field name="website" widget="url"></field>
 
-                                </group>
-                            </group>
-                    </sheet>
+                        </group>
+                    </group>
+                </sheet>
 
                 <!-- ********* Chatter ******** -->
                 <div class="oe_chatter">
@@ -85,63 +85,63 @@
                     <field name="message_ids"/>
                 </div>
 
-                </form>
-            </field>
+            </form>
+        </field>
     </record>
 
-<!-- *********** Tree VIEW ************ -->
-    <record id="view_hospital_patient_tree" model="ir.ui.view" >
-            <field name="name">hospital.patient.tree</field>
-            <field name="model">hospital.patient</field>
-            <field name="arch" type="xml">
+    <!-- *********** Tree VIEW ************ -->
+    <record id="view_hospital_patient_tree" model="ir.ui.view">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
 
-                <!-- <tree create='0' delete='0'> -->
-                <tree sample="1" export_xlsx="0">    <!-- export_xlsx="0"   Aanathi Download Button Remove thai jase...  -->
-                    <field  name="name" string="Patient Name"></field>
-                    <field  name="date_of_birth"></field>
-                    <field  name="ref"></field>
-                    <field  name="age" avg="Avg Age"></field>   <!-- avg,sum,etc... :- AA aggregate Function 6 ... Tree View ni Niche batavse...-->
-                    <field  name="gender"></field>
-                </tree>
-            </field>
+            <!-- <tree create='0' delete='0'> -->
+            <tree sample="1" export_xlsx="0">                <!-- export_xlsx="0"   Aanathi Download Button Remove thai jase...  -->
+                <field name="name" string="Patient Name"></field>
+                <field name="date_of_birth"></field>
+                <field name="ref"></field>
+                <field name="age" avg="Avg Age"></field>                <!-- avg,sum,etc... :- AA aggregate Function 6 ... Tree View ni Niche batavse...-->
+                <field name="gender"></field>
+            </tree>
+        </field>
     </record>
-    
-<!-- ********** SEARCH VIEW ********** -->
-        <record id="view_hospital_patient_search" model="ir.ui.view">
 
-            <field name="name">hospital.patient.search</field>
-            <field name="model">hospital.patient</field>
-            <field name="arch" type="xml">
+    <!-- ********** SEARCH VIEW ********** -->
+    <record id="view_hospital_patient_search" model="ir.ui.view">
 
-                <search>
-                    <field  name="name" string="Patient Name"></field>
-                    <field  name="age"></field>
-                    <field  name="gender"></field>
-                    <field  name="ref" string="Refrence"></field>
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
 
-                    <!-- ****************** filters **************** -->
-                    <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]" />
-                    <!-- <separator/>      It is perform and Operation between two Filters.... Beacause  it is  defaulting a "OR" -->
-                    <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]
+            <search>
+                <field name="name" string="Patient Name"></field>
+                <field name="age"></field>
+                <field name="gender"></field>
+                <field name="ref" string="Refrence"></field>
+
+                <!-- ****************** filters **************** -->
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]" />
+                <!-- <separator/>      It is perform and Operation between two Filters.... Beacause  it is  defaulting a "OR" -->
+                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]
                     " />
-                    <filter name="filter_archived" string="Archived" domain="[('active', '=', 'False')]
+                <filter name="filter_archived" string="Archived" domain="[('active', '=', 'False')]
                     " />
-                    <!-- <separator/>  
+                <!-- <separator/>  
                     <filter name="filter_kids" string="Kids" domain="[('age', '&lt;=', '5')]
                     " />  -->
 
-                    <!-- *************** group **************** -->
-                    <group expand="1" string="Group By">
+                <!-- *************** group **************** -->
+                <group expand="1" string="Group By">
                     <filter string="Gender" name='group_by_gender' context="{'group_by':'gender'}"/>
-                    </group>
+                </group>
 
-                    <!-- ******************* search-pannel ***************** -->
-                    <searchpanel>
-                        <field name="gender" icon="fa-users" select="multi" enable_counters="1"/>
-                    </searchpanel>
-                </search>
-            </field>
-        </record>
+                <!-- ******************* search-pannel ***************** -->
+                <searchpanel>
+                    <field name="gender" icon="fa-users" select="multi" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
 
 
 
