@@ -10,7 +10,7 @@
             <field name="state">code</field>
             <field name="code">model.test_cron_job()</field>
             <field name="interval_number">1</field>
-            <field name="interval_type">hours</field>
+            <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
         </record>
 
