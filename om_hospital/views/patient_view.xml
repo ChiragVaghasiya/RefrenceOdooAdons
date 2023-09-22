@@ -11,9 +11,9 @@
         <field name="state">code</field>
         <field name="code">
             if record:
-                values = env.ref('om_hospital.action_mail_to_patient').sudo().read()[0]
-                values.update({'context': env.context})
-                action = values
+            values = env.ref('om_hospital.action_mail_to_patient').sudo().read()[0]
+            values.update({'context': env.context})
+            action = values
         </field>
     </record>
 
@@ -29,22 +29,24 @@
                 <sheet>
 
                     <!-- ************ ALERT IN TOP OF THE SHEET *********** -->
-                    <div class="alert alert-info text-center o_form_header" attrs="{'invisible': [('is_birthday', '=', False)]}" role="alert">
-                        <a class="close" data-dismiss="alert" href="#" aria-                                                                     ="Close">
+                    <div class="alert alert-info text-center o_form_header"
+                         attrs="{'invisible': [('is_birthday', '=', False)]}" role="alert">
+                        <a class="close" data-dismiss="alert" href="#" aria-="Close">
                             <i title="Close" class="small fa fa-times"/>
                         </a>
                         <div>
                             <strong>Today is Birthday !!!!!</strong>
                         </div>
                         <div>
-                                Wish <field name="name" readonly="1" />
+                            Wish
+                            <field name="name" readonly="1"/>
                         </div>
                     </div>
 
                     <!-- ***********  NAME field Motu Dekhase : AANATHI *********** -->
                     <div class="oe_title">
                         <h1>
-                            <label for="name" string="Name" class="oe_edit_only" />
+                            <label for="name" string="Name" class="oe_edit_only"/>
                             <field name="name" required="1"></field>
                         </h1>
                     </div>
@@ -55,17 +57,20 @@
                         <group>
                             <field name="date_of_birth"></field>
                             <field name="age"></field>
+                            <field name="last_seen"></field>
                             <field name="active" widget="boolean_toggle"></field>
 
                             <!-- *********** "attrs" Tyare Vapara ke Jyare "Field" ne "Condition" aapine "Kaik Action" karavvu hoy (ex."'HIDE KARVU HOY','READONLY KARVU HOY','etc...'")... ********** -->
-                            <field name="parent" attrs="{'invisible': ['|' , ('age', '>', 18) , ('gender', '=', 'male')]}"/>
+                            <field name="parent"
+                                   attrs="{'invisible': ['|' , ('age', '>', 18) , ('gender', '=', 'male')]}"/>
 
                             <!-- <field name="active" invisible="1"></field> -->
                         </group>
-                        <group >
+                        <group>
                             <field name="gender" widget="radio"></field>
                             <field name="ref"></field>
-                            <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"></field>
+                            <field name="tags_ids" widget="many2many_tags"
+                                   options="{'color_field': 'color', 'no_create_edit': True}"></field>
                             <!-- "many2many_checkboxes" pan aave...  -->
                             <field name="is_birthday" invisible="1"/>
                         </group>
@@ -96,12 +101,16 @@
         <field name="arch" type="xml">
 
             <!-- <tree create='0' delete='0'> -->
-            <tree sample="1" export_xlsx="0">                <!-- export_xlsx="0"   Aanathi Download Button Remove thai jase...  -->
+            <tree sample="1" export_xlsx="0"
+                  decoration-success="active==True">                <!-- export_xlsx="0"   Aanathi Download Button Remove thai jase...  -->
                 <field name="name" string="Patient Name"></field>
                 <field name="date_of_birth"></field>
                 <field name="ref"></field>
-                <field name="age" avg="Avg Age"></field>                <!-- avg,sum,etc... :- AA aggregate Function 6 ... Tree View ni Niche batavse...-->
+                <field name="age"
+                       avg="Avg Age"></field>                <!-- avg,sum,etc... :- AA aggregate Function 6 ... Tree View ni Niche batavse...-->
                 <field name="gender"></field>
+                <field name="active" invisible="1"/>
+                <field name="last_seen"></field>
             </tree>
         </field>
     </record>
@@ -120,12 +129,12 @@
                 <field name="ref" string="Refrence"></field>
 
                 <!-- ****************** filters **************** -->
-                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]" />
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
                 <!-- <separator/>      It is perform and Operation between two Filters.... Beacause  it is  defaulting a "OR" -->
                 <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]
-                    " />
+                    "/>
                 <filter name="filter_archived" string="Archived" domain="[('active', '=', 'False')]
-                    " />
+                    "/>
                 <!-- <separator/>  
                     <filter name="filter_kids" string="Kids" domain="[('age', '&lt;=', '5')]
                     " />  -->
@@ -144,10 +153,6 @@
     </record>
 
 
-
-
-
-
     <record id="action_hospital_patient" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="type">ir.actions.act_window</field>
@@ -157,15 +162,15 @@
         <field name="context">{'search_default_group_by_gender':1}</field>
         <field name="help" type="html">
             <p>
-                Creat  Your First Patient !!!
+                Creat Your First Patient !!!
             </p>
         </field>
     </record>
 
     <menuitem
-        id = "menu_patient"
-        name = "Patient"
-        action ="action_hospital_patient"
-        parent = "menu_patient_detail"
-        sequence = "0" />
+            id="menu_patient"
+            name="Patient"
+            action="action_hospital_patient"
+            parent="menu_patient_detail"
+            sequence="0"/>
 </odoo>

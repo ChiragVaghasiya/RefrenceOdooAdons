@@ -1,5 +1,5 @@
 from odoo import api,fields, models
-from datetime import date
+from datetime import date, datetime
 from odoo.exceptions import ValidationError
 
 
@@ -10,7 +10,7 @@ class HospitalPatient(models.Model):
 
     name = fields.Char(string = "Name", tracking=True , help="Help Massage!!!!!")
     date_of_birth = fields.Date(string = "Date Of Birth")
-    age = fields.Integer(string = "Age", compute = '_compute_age' , tracking=True , store=True)      # "computed fields" is not stor in a our postgress database ...
+    age = fields.Integer(string = "Age", compute = '_compute_age' ,inverse="_inverse_dob", tracking=True , store=True)      # "computed fields" is not stor in a our postgress database ...
     ref = fields.Char(string = "Refrence", tracking=True)
     parent = fields.Char(string = "Parent", tracking=True )
     active = fields.Boolean(string = "Active" , default=True, tracking=True)
@@ -21,7 +21,8 @@ class HospitalPatient(models.Model):
     email = fields.Char(string = "Email", tracking=True )
     phone = fields.Integer(string = "Phone", tracking=True )
     website = fields.Char(string = "Website", tracking=True )
-    # tracking=1
+    last_seen = fields.Datetime('Last Seen', default=lambda self: fields.Datetime.now())
+    # tracking= 1
     # tracking=2   Aa rite Lakhavthi UI ma 1,2,3,4.... aa rite positions ma Dekhase ....
     # tracking=3    
     # tracking=4
@@ -65,7 +66,11 @@ class HospitalPatient(models.Model):
                 rec.age = today.year - rec.date_of_birth.year
             else:
                 rec.age = 0
-    
+
+    def _inverse_dob(self):
+        for rec in self:
+            rec.date_of_birth = date.today()
+
     def action_test(self):
         print("***************clickes*************")
         return
