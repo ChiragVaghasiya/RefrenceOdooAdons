@@ -26,13 +26,11 @@ class ResCurrency(models.Model):
         }
         _logger.info('Header : %s', headers)
         url = "https://api.apilayer.com/exchangerates_data/latest?base=" + currency + "&symbols="
-        url = "https://api.exchangeratesapi.io/v1/latest?access_key=" + apikey_generation.api_key
         response = requests.request("GET", url, headers=headers, data=payload)
         status_code = response.status_code
         result = response.text
         rates_dict = json.loads(result)
         new_rates = rates_dict.get('rates')
-
 
         now = datetime.now()
         fmt = int(now.strftime("%w"))
@@ -55,11 +53,3 @@ class ResCurrency(models.Model):
                     else:
                         update_currency_rate.write({'company_rate': values})
                         update_currency_rate.write({'company_id': company_id})
-
-
-
-
-
-
-
-
