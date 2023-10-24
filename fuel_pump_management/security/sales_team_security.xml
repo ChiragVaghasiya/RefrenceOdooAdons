@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="category_supervisor" model="ir.module.category">
+            <field name="name">Balancing Report</field>
+        </record>
+
+        <record model="ir.rule" id="balance_report_rule">
+            <field name="name">Balance Report multi-company</field>
+            <field name="model_id" ref="model_balance_report"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="group_balance_report_readonly" model="res.groups">
+            <field name="name">Show Balance Report - Readonly</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_stock_move_from_balance_report" model="res.groups">
+            <field name="name">Is Applicable to Adjust Stock in POS</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_station_supervisor" model="res.groups">
+            <field name="name">Station Supervisor</field>
+            <field name="category_id" ref="fuel_pump_management.category_supervisor"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Be able to create reports, view and edit details in reports and approve to "Supervisor Approved" level. This user must only be able to view balancing reports that they are the supervisor on.</field>
+        </record>
+
+        <!-- <record id="pos_rule_balance_report" model="ir.rule">
+            <field name="name">Personal Balance Report</field>
+            <field ref="model_balance_report" name="model_id"/>
+            <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+            <field name="groups" eval="[(4, ref('group_station_supervisor'))]"/>
+        </record> -->
+        <!-- Some modules (i.e. sale) restrict the access for some users
+        We want the readonly group to still have the read access on all balane report.-->
+        <record id="balanc_report_group_readonly" model="ir.rule">
+            <field name="name">Readonly Balance Report</field>
+            <field name="model_id" ref="model_balance_report"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_balance_report_readonly'))]"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="group_back_office_supervisor" model="res.groups">
+            <field name="name">Back Office Supervisor</field>
+            <field name="category_id" ref="fuel_pump_management.category_supervisor"/>
+            <field name="implied_ids" eval="[(4, ref('group_station_supervisor'))]"/>
+            <field name="comment">Same permissions as previous tier plus able to create and edit pumps, and approve reports to “Approved” level. This user must be able to view all balancing reports.</field>
+        </record>
+
+        <record id="group_master_supervisor" model="res.groups">
+            <field name="name">Master Supervisor</field>
+            <field name="comment">Same permissions as previous 2 tiers plus able to approve reports to “Complete” level. This user must be able to view all balancing reports.</field>
+            <field name="category_id" ref="fuel_pump_management.category_supervisor"/>
+            <field name="implied_ids" eval="[(4, ref('group_back_office_supervisor')), (4, ref('group_balance_report_readonly'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        
+
+    </data>
+</odoo>

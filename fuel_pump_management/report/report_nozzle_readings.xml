@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="paperformat_euro_lowmargin_fuel_total" model="report.paperformat">
+            <field name="name">European A4 low margin</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">27</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">22</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="nozzle_reading_report" model="ir.actions.report">
+            <field name="name">Balance Reports</field>
+            <field name="model">report.fuel_pump_management.report_nozzle_readings</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">fuel_pump_management.report_nozzle_readings</field>
+            <field name="paperformat_id" ref="fuel_pump_management.paperformat_euro_lowmargin_fuel_total"/>
+        </record>
+        
+        <template id="report_nozzle_readings">
+            <t t-call="web.html_container">
+                <!-- <t t-call="web.external_layout"> -->
+                <!-- <t t-foreach="user" t-as="user"> -->
+                    <t t-call="fuel_pump_management.template_report_nozzle_readings" t-lang="user and user.partner_id.lang"/>
+                <!-- </t> -->
+                <!-- </t> -->
+            </t>
+        </template>
+
+        <template id="template_report_nozzle_readings">
+            <t t-call="web.external_layout">
+                <div class="page custom_fuel">
+                    <link rel="stylesheet" href="/fuel_pump_management/static/src/css/custom.css"/>
+                    <div class="oe_structure"/>
+                    <h4>
+                        <span>Nozzle Readings # </span>
+                    </h4>
+
+                    <div class="row mt32 mb32" id="informations">
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Start Date::</strong>
+                            <p class="m-0" t-esc="start_date"/>
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>End Date:</strong>
+                            <p class="m-0" t-esc="end_date"/>
+                        </div>
+                        <div t-if="docs.company_id" class="col-auto col-3 mw-100 mb-2">
+                            <strong>Company:</strong>
+                            <p class="m-0" t-esc="docs.company_id.name"/>
+                        </div>
+                    </div>
+
+                    <h6 id="nozzle_1_ids" class="mt16" t-if="docs.mapped('nozzle_1_ids')">
+                        <span>Nozzle Reading by User</span>
+                    </h6>
+                    <table class="table table-sm o_main_table" t-if="docs.mapped('nozzle_1_ids')">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th name="th_pump" class="text-left">Pump</th>
+                                <th name="th_stage" class="text-left">Stage</th>
+                                <th name="th_pump_rdg_$" class="text-right">Pump RDG $</th>
+                                <th name="th_pump_rdg_l" class="text-right">Pump RDG $</th>
+                                <th name="th_pump_rdg_s" class="text-right">Pump RDG Side</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-foreach="nozzle_data" t-as="nozzle">
+                                <tr>
+                                    <td name="td_pump_name">
+                                        <t t-if="nozzle"><span t-field="nozzle.pump_id"/></t>
+                                    </td>
+                                    <td name="td_stage">
+                                        <span t-field="nozzle.stage"/>
+                                    </td>
+                                    <td name="td_pump_rdg_$" class="text-right">
+                                        <span t-field="nozzle.pump_rdgs"/>
+                                    </td>
+                                    <td name="td_pump_rdg_l" class="text-right">
+                                        <span t-field="nozzle.pump_rdgl"/>
+                                    </td>
+                                    <td name="td_pump_rdg_s" class="text-right">
+                                        <span t-field="nozzle.pump_rdg_side"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <h6 id="sales_by_product_ids" class="mt16" t-if="docs.mapped('sales_by_product_ids')">
+                        <span>Total Product Sales</span>
+                    </h6>
+
+                    <table class="table table-sm o_main_table" t-if="docs.mapped('sales_by_product_ids')">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th name="th_product" class="text-left">Product</th>
+                                <th name="th_sales_litre" class="text-right">Sales In Litre Pump</th>
+                                <th name="th_sales_dollar" class="text-right">Sales In Dollars Pump</th>
+                                <th name="th_average_retail" class="text-right">Average Retail</th>
+                                <th name="th_total" class="text-right">Total on Sales Receipt</th>
+                                <th name="th_difference" class="text-right">Difference</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-foreach="total_product_sales" t-as="sale_product">
+                                <tr>
+                                    <td name="td_product">
+                                        <span t-esc="sale_product.get('product').name"/>
+                                    </td>
+                                    <td name="td_sales_litre" class="text-right">
+                                        <span t-esc="sale_product.get('product_sales_in_liter')"/>
+                                    </td>
+                                    <td name="td_sales_dollar" class="text-right">
+                                        <span t-esc="sale_product.get('product_sale_in_dollar')" t-options='{"widget": "monetary", "display_currency": currency_id}'/>
+                                    </td>
+                                    <td name="td_average_retail" class="text-right">
+                                        <span t-esc="sale_product.get('product_avg_retail')"/>
+                                    </td>
+                                    <td name="td_total" class="text-right">
+                                        <span t-esc="sale_product.get('product_on_sales_receipt')" t-options='{"widget": "monetary", "display_currency": currency_id}'/>
+                                    </td>
+                                    <td name="td_difference" class="text-right">
+                                        <span t-esc="sale_product.get('product_difference')" t-options='{"widget": "monetary", "display_currency": currency_id}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <h6 id="balance_rep_pro_session_ids" class="mt16" t-if="docs.mapped('balance_rep_pro_session_ids')">
+                        <span>Nozzle Reading by POS Session</span>
+                    </h6>
+
+                    <table class="table table-sm o_main_table" t-if="docs.mapped('balance_rep_pro_session_ids')">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th name="th_product" class="text-left">Product</th>
+                                <th name="th_litre_start" class="text-right">Litres in tank at start</th>
+                                <th name="th_purchase_qty" class="text-right">Purchase during Session</th>
+                                <th name="th_sale_qty" class="text-right">Sales Qty on Session</th>
+                                <th name="th_sale_dollar" class="text-right">Sales Dollar in Session</th>
+                                <th name="th_balance" class="text-right">Balance</th>
+                                <th name="th_stock_end" class="text-right">Stock At End</th>
+                                <th name="th_over_shot" class="text-right">Over/Shot</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-foreach="nozzle_reading_by_pos_session" t-as="nozle_reading">
+                                <tr>
+                                    <td name="td_product">
+                                        <span t-esc="nozle_reading.get('product').name"/>
+                                    </td>
+                                    <td name="td_litre_start" class="text-right">
+                                        <span t-esc="nozle_reading.get('litre_in_tank_start')"/>
+                                    </td>
+                                    <td name="td_purchase_qty" class="text-right">
+                                        <span t-esc="nozle_reading.get('purchase_qty')"/>
+                                    </td>
+                                    <td name="td_sale_qty" class="text-right">
+                                        <span t-esc="nozle_reading.get('sale_qty_session')"/>
+                                    </td>
+                                    <td name="td_sale_dollar" class="text-right">
+                                        <span t-esc="nozle_reading.get('sales_dollar_session')" t-options='{"widget": "monetary", "display_currency": currency_id}'/>
+                                    </td>
+                                    <td name="td_balance" class="text-right">
+                                        <span t-esc="nozle_reading.get('balance')"/>
+                                    </td>
+                                    <td name="td_stock_end" class="text-right">
+                                        <span t-esc="nozle_reading.get('stock_at_end')"/>
+                                    </td>
+                                    <td name="td_over_shot" class="text-right">
+                                        <span t-esc="nozle_reading.get('over_shot')"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>

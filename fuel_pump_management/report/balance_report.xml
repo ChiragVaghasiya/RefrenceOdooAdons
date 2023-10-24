@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_euro_lowmargin_fuel" model="report.paperformat">
+            <field name="name">European A4 low margin</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">50</field>
+            <field name="dpi">80</field>
+        </record>
+        <record id="action_report_balance_report" model="ir.actions.report">
+            <field name="name">Balance Report</field>
+            <field name="model">balance.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="paperformat_id" ref="fuel_pump_management.paperformat_euro_lowmargin_fuel"/>
+            <field name="report_name">fuel_pump_management.report_balancesession</field>
+            <field name="report_file">fuel_pump_management.report_balancesession</field>
+            <field name="print_report_name">'Balance Report - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_balance_report"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

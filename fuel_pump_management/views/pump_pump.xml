@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="pump_pump_form_view" model="ir.ui.view">
+            <field name="name">pump.pump.view.form</field>
+            <field name="model">pump.pump</field>
+            <field name="arch" type="xml">
+                <form string="Nozzles">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+	                        <button name="action_balancing_report" type="object" class="oe_stat_button" icon="fa-pencil-square-o" string="Balancing Report"/>
+	                    </div>
+                        <group>
+                            <group>
+	                            <field name="name"/>
+	                            <field name="sr_no"/>
+	                        </group>
+	                        <group>
+	                            <field name="fuel_type"/>
+	                            <field name="company_id"/>
+	                            <field name="pos_config"/>
+	                        </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="pump_pump_view_tree" model="ir.ui.view">
+            <field name="name">pump.pump.view.tree</field>
+            <field name="model">pump.pump</field>
+            <field name="arch" type="xml">
+                <tree string="Nozzles">
+                    <field name="name"/>
+                    <field name="sr_no" invisible="1"/>
+                    <field name="fuel_type" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="pump_pump_view_search" model="ir.ui.view">
+            <field name="name">pump.pump.view.search</field>
+            <field name="model">pump.pump</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+        
+        
+        
+        <record model="ir.actions.act_window" id="action_pump_management">
+        <field name="name">Nozzles</field>
+        <field name="res_model">pump.pump</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="pump_pump_form_view"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new accounting test
+            </p>
+        </field>
+    </record>
+
+    
+    <menuitem name="Fuel Pump" id="main_menu_fuel_pump_management" action="action_pump_management"/>
+    <menuitem id="menu_fuel_pump_management" name="Fuel Pump" parent="main_menu_fuel_pump_management" action="action_pump_management" sequence="1" />
+
+    <menuitem id="menu_fuel_pump_reporting" name="Reporting" parent="main_menu_fuel_pump_management" sequence="3"/>
+
+    <menuitem id="menu_fuel_pump_configuration" name="Configuration" parent="main_menu_fuel_pump_management" sequence="40"/>
+    
+
+    </data>
+</odoo>

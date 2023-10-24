@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_session_form_extend" model="ir.ui.view">
+        <field name="name">pos.session.form.view.extend</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_pos_balancing_report" type="object" class="oe_stat_button" icon="fa-pencil-square-o" string="Balancing Report"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

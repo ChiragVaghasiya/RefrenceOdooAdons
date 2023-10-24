@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="balance_report_form_view" model="ir.ui.view">
+            <field name="name">balance.report.view.form</field>
+            <field name="model">balance.report</field>
+            <field name="arch" type="xml">
+                <form string="Balance Report">
+                    <header>
+                        
+                        <!-- <button id="stock_adjustment" name="action_stock_adjustment" type="object" string="Stock Adjustment" class="oe_highlight" attrs="{'invisible' : ['|', ('is_difference_on_product', '!=', True), ('stock_adjustment', '!=', True)]}"/> -->
+                    </header>
+                    <sheet>
+                        <field name="is_difference_on_product" invisible="1"/>
+                        <!-- <field name="stock_adjustment" invisible="1"/> -->
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" string="Stock Adjustments" name="action_stock_adjustment" type="object" icon="fa-pencil-square-o" groups="fuel_pump_management.group_stock_move_from_balance_report" attrs="{'invisible' : [('is_difference_on_product', '!=', True)]}">
+                        </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+			                    <field name="date"/>
+			                </group>
+			                <group>
+			                    <field name="pos_session"/>
+			                    <field name="user_id"/>
+			                    <field name="company_id"/>
+			               </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Nozzle" name="nozzle1">
+                                <group string="Nozzle Reading by User" >
+                                    <field name="nozzle_1_ids" nolabel="1">
+                                        <tree editable="bottom" string="Nozzle Reading by User">
+                                            <field name="balance_report_id" invisible="1"/>
+                                            <field name="pump_id"/>
+                                            <field name="stage"/>
+                                            <field name="pump_rdgs" attrs="{'readonly': [('stage', '=', 'opening')]}"/>
+                                            <field name="pump_rdgl" attrs="{'readonly': [('stage', '=', 'opening')]}"/>
+                                            <field name="pump_rdg_side" attrs="{'readonly': [('stage', '=', 'opening')]}"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <!-- <group>
+                                    <field name="total_sale_in_liter"/>
+                                    <field name="total_sale_in_dollar"/>
+                                    <field name="avg_retail"/>
+                                    <field name ="total_on_sales_receipt"/>
+                                    <field name="difference"/>
+                                </group> -->
+                                <group string="Total Product Sales">
+                                    
+                                </group>
+                                <!-- <label for="sales_by_product_ids" string="Total Product Sales"/> -->
+                                <field name="sales_by_product_ids" nolabel="1">
+                                    <tree editable="bottom" string="Total Product Sales">
+                                        <field name="balance_report_id" invisible="1"/>
+                                        <field name="product_id"/>
+                                        <field name="product_sales_in_liter"/>
+                                        <field name="product_sale_in_dollar"/>
+                                        <field name="product_avg_retail"/>
+                                        <field name="product_on_sales_receipt"/>
+                                        <field name="product_difference"/>
+                                    </tree>
+                                </field>
+                                <group string="Nozzle Reading by POS Session">
+                                    
+                                </group>
+                                <field name="balance_rep_pro_session_ids" nolabel="1">
+                                    <tree editable="bottom" string="Nozzle Reading by User">
+                                        <field name="balance_report_id" invisible="1"/>
+                                        <field name="pump_id" invisible="1"/>
+                                        <field name="product_id"/>
+                                        <field name="litre_in_tank_start"/>
+                                        <field name="purchase_qty"/>
+                                        <field name="sale_qty_session"/>
+                                        <field name="sales_dollar_session"/>
+                                        <field name="balance"/>
+                                        <field name="stock_at_end"/>
+                                        <field name="over_shot"/>
+                                    </tree>
+                                </field>
+
+
+                            </page>
+                            <!-- <page string="Nozzle 2" name="nozzle2">
+                                <field name="nozzle_2_ids">
+                                <tree editable="bottom">
+                                    <field name="stage"/>
+                                    <field name="pump_rdgs"/>
+                                    <field name="pump_rdgl"/>
+                                    <field name="pump_rdg_side"/>
+                                </tree>
+                                </field>
+                            </page> -->
+                        </notebook>
+                        
+                        
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="inherit_balance_report_form_view1" model="ir.ui.view">
+            <field name="name">balance.report.form.inherit1</field>
+            <field name="model">balance.report</field>
+            <field name="inherit_id" ref="fuel_pump_management.balance_report_form_view" />
+            <field name="groups_id" eval="[(6, 0, [ref('fuel_pump_management.group_master_supervisor') ])]" />
+            <field name="arch" type="xml">                                   
+                <field name="nozzle_1_ids" position="attributes">
+                   <attribute name="readonly">0</attribute>                   
+                </field>                                
+            </field>
+        </record>
+        
+        <record id="balance_report_view_tree" model="ir.ui.view">
+            <field name="name">balance.report.view.tree</field>
+            <field name="model">balance.report</field>
+            <field name="arch" type="xml">
+                <tree string="Balance Report">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="pos_session"/>
+                    <field name="user_id"/>
+                    <field name="company_id"/>
+                    <field name="pump_id"/>
+                </tree>
+            </field>
+        </record>
+        
+
+        <record id="balance_report_view_search" model="ir.ui.view">
+            <field name="name">balance.report.view.search</field>
+            <field name="model">balance.report</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="pump_id"/>
+                    <separator/>
+                    <group expand="1" string="Group By">
+                        <filter string="Stage" name="groupby_stage" context="{'group_by': 'stage_id'}"/>
+                        <filter string="Supervisor" name="groupby_user_id" context="{'group_by': 'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id='balance_report_view_kanban' model='ir.ui.view'>
+            <field name="name">balance.report.kanban</field>
+            <field name="model">balance.report</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="stage_id" sample="1">
+                    <field name="name" />
+                    <field name="company_id" />
+                    <field name="date" />
+                    <field name="pos_session" />
+                    <field name="user_id" />
+                    <field name="stage_id" />
+                    <field name="pump_id" />
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <t t-if="record.name.raw_value"><field name="name"/></t>
+                                    </strong>
+                                    <ul>
+                                        <li>
+                                            <t t-if="record.date.raw_value"><field name="date"/></t>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.pos_session.raw_value">Session : <field name="pos_session"/></t>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.user_id.raw_value">Supervisor : <field name="user_id"/></t>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.pump_id.raw_value">Pump : <field name="pump_id"/></t>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                   </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        
+        
+        <record model="ir.actions.act_window" id="action_balance_report">
+            <field name="name">Balance Report</field>
+            <field name="res_model">balance.report</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="balance_report_view_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Balancing Report
+                </p>
+            </field>
+        </record>
+
+    
+    <menuitem id="menu_fuel_balance_report" name="Balance Report" parent="main_menu_fuel_pump_management" action="action_balance_report" sequence="1" />
+
+
+    <record id='balance_report_stage_view_tree' model='ir.ui.view'>
+        <field name="name">balance.report.stage.tree</field>
+        <field name="model">balance.report.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Stage" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id='balance_report_stage_action' model='ir.actions.act_window'>
+        <field name="name">Balance Report Stages</field>
+        <field name="res_model">balance.report.stage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new Balance Report Stages
+          </p>
+        </field>
+    </record>
+
+    <menuitem action="balance_report_stage_action" parent="menu_fuel_pump_configuration" id="balance_report_stage_menu" groups="base.group_no_one"/>
+    
+
+    </data>
+</odoo>

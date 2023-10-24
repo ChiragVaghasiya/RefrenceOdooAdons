@@ -1,0 +1,11 @@
+.pos .nozzle-button {
+    display: flex;
+}
+
+.nozzle-button {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: medium;
+    color: white;
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_extend" model="ir.ui.view">
+        <field name="name">res.users.form.view.extend</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='references']" position="inside">
+                <group name="pos_config" string="POS">
+                    <field name="is_applicable_stock_adjust_pos"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

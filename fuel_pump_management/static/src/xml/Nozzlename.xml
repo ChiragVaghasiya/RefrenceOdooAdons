@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SelectNozzleButton" owl="1">
+        <div class="nozzle-button" t-on-click="selectNozzles">
+            <t t-if="nozzlename">
+                <span class="username">
+                    <t t-esc="nozzlename"/>
+                </span>
+            </t>
+            <t t-else="">
+                <span class="username">
+                    Select Nozzle
+                </span>
+            </t>
+        </div>
+    </t>
+
+</templates>

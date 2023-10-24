@@ -1,0 +1,9 @@
+.custom_fuel {
+		font-family: 'Arial Narrow';
+		font-style: normal;
+		src:url('/fuel_pump_management/static/src/fonts/arial-narrow.woff') format('woff'),
+		url('/fuel_pump_management/static/src/fonts/arial-narrow_d.ttf') format('truetype');
+}
+.custom_fuel {
+	font-size: 10px;
+}
