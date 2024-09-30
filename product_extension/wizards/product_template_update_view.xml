@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_product_template_update_form_view" model="ir.ui.view">
+        <field name="name">Product.template.update</field>
+        <field name="model">product.template.update</field>
+        <field name="arch" type="xml">
+            <form string="Update Product">
+                <group>
+                    <field name="product_tmpl_id" string="Choose Product">
+                    </field>
+                </group>
+
+                <footer>
+                    <button name="update_product_template_from_product" string="Update Product" type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_view_product_template_update" model="ir.actions.act_window">
+        <field name="name">Update Product Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template.update</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_product_template_update_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.actions.server" id="action_redict_product_template_update_view">
+        <field name="name">Update Product</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.get_product_template_update_view()</field>
+    </record>
+</odoo>

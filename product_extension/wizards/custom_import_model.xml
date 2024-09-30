@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_custom_import_model_form" model="ir.ui.view">
+        <field name="name">custom.update.product.form</field>
+        <field name="model">custom.update.product</field>
+        <field name="arch" type="xml">
+            <form string="Custom Import">
+                <group>
+                    <field name="process_type"/>
+                    <field name="data_file" filename="file_name"/>
+                    <field name="file_name" invisible="1"/>
+                    <span class="o_form_label o_td_label" name="address_name">
+                        <b>Updated Record</b>
+                    </span>
+                    <div class="o_address_format">
+                        <b><field name="flag_row" readonly="1"  style="display:inline-block;width:5%;"/></b> out of <b><field name="total_record" readonly="1"  style="display:inline-block;width:5%;margin-left:1%"/></b>
+                    </div>    
+                </group>
+                <group>
+                    <field name="validation_error_ids" string="" readonly="1" invisible="not validation_error_ids">
+                        <tree>
+                            <field name="sheet_row"/>
+                            <field name="record_id" string="Product ID"/>  
+                            <field name="product_name" string="Product Name"/> 
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Update" type="object" name="update_product_product_records" class="btn-primary" invisible="validation_error_ids"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="custom_import_action_window" model="ir.actions.act_window">
+        <field name="name">Update Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">custom.update.product</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_custom_import_model_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="product_product_update_menu" name="Update Product Variants" action="custom_import_action_window"
+            parent="stock.menu_stock_inventory_control" sequence="2" groups="product.group_product_variant"/>
+</odoo>

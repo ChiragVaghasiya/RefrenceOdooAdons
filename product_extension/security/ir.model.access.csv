@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_template_merge,access.product_template_merge,model_product_template_merge,,1,1,1,1
+access_product_template_merge_details,access.product_template_merge_details,model_product_template_merge_details,,1,1,1,1
+access_product_template_update,access.product_template_update,model_product_template_update,,1,1,1,1
+access_product_product_merge_details,access.product_product_merge_details,model_product_product_merge_details,,1,1,1,1
+access_product_product_merge,access.product_product_merge,model_product_product_merge,,1,1,1,1
+accss_custom_update_product',access.custom_update_product',model_custom_update_product,,1,1,1,1
+access_validation_error_records,access.validation_error_records,model_validation_error_records,,1,1,1,1

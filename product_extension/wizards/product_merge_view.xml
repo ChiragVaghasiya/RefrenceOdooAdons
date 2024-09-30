@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_product_merge_form_view" model="ir.ui.view">
+        <field name="name">Product.template.merge</field>
+        <field name="model">product.template.merge</field>
+        <field name="arch" type="xml">
+            <form string="Merge Product">
+                <group>
+                    <field name="product_tmpl_merge_id" string="">
+                        <tree editable='bottom'>
+                            <field name="sequence" widget="handle"/>
+                            <field name="is_mail_product_template"/>
+                            <field name="product_tmpl_id"/>
+                            <field name="attribute_id" widget="many2many_tags"/>
+                            <field name="value_attr_ids" widget="many2many_tags"/>
+                        </tree>
+                    </field>
+
+                </group>
+
+                <footer>
+                    <button name="merge_product_template_list" string="Merge" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_view_product_merge" model="ir.actions.act_window">
+        <field name="name">Merge Product Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template.merge</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_product_merge_form_view"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

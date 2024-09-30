@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_product_product_merge_form_view" model="ir.ui.view">
+        <field name="name">Product.product.merge</field>
+        <field name="model">product.product.merge</field>
+        <field name="arch" type="xml">
+            <form string="Merge Product">
+                <group style="margin:5px;">
+                    <field name="process_type" string="Choose Process Type"/>
+                </group>
+                <group>
+                    <field name="product_merge_id" string="">
+                        <tree editable='bottom'>
+                            <field name="sequence" widget="handle"/>
+                            <field name="is_main_product" string="Main Product"/>
+                            <!--                            <field name="is_mail_product_template"/>-->
+                            <field name="product_id"/>
+                            <field name="attribute_id" widget="many2many_tags"/>
+                            <field name="value_attr_ids" widget="many2many_tags"/>
+                        </tree>
+                    </field>
+                </group>
+
+                <footer>
+                    <button name="merge_product_product_list" string="Merge" type="object" class="btn-primary"/>
+                    <button name="update_product_attributes" string="Set Attribute to All" type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_view_product_product_merge" model="ir.actions.act_window">
+        <field name="name">Merge Product product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product.merge</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_product_product_merge_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.actions.server" id="action_redict_product_product_merge_view">
+        <field name="name">Merge/Change Product</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.get_product_product_merge_view()</field>
+    </record>
+</odoo>
